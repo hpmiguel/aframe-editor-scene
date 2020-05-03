@@ -1,2 +1,6 @@
 # aframe-editor-scene
-Editor Scene UI 4 aframe vr framework
+Editor Aframe Scene UI to build VR web apps. This applicacion export and render the scene with their components in html code.
+
+## Quickstart
+
+You can select figures from palette and drag&drop to the scene
