@@ -5,7 +5,6 @@
     <title>dynamic-platforms</title>
     <meta name="description" content="dynamic-platforms">
     <script src="node_modules/aframe/dist/aframe-v1.0.4.js"></script>
-    <script type="module" src="main.js"></script>
   </head>
   <body>
     <a-scene>
@@ -17,11 +16,13 @@
       <!-- Camera. -->
       <a-entity id="rig" position="-1 0.5 -2">
         <a-entity id="camera" camera wasd-controls look-controls>
-<!--          <a-entity cursor="fuse: true; fuseTimeout: 500"-->
-<!--                    position="0 0 -0.2"-->
-<!--                    geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"-->
-<!--                    material="color: red; shader: flat">-->
-<!--          </a-entity>-->
+          <a-entity cursor="fuse: true; fuseTimeout: 500"
+                    position="0 0 -0.5"
+                    geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+                    material="color: red; shader: flat"
+                    raycaster="far: 20; interval: 1000; objects: .selectable"
+          ></a-entity>
+<!--            <a-entity laser-controls raycaster="objects: .selectable; far: 5"></a-entity>-->
         </a-entity>
       </a-entity>
 
