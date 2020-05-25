@@ -1,6 +1,4 @@
-import { cloneDeep as _cloneDeep } from 'lodash';
-
-const AFRAME = (window as any).AFRAME;
+import aframe from 'aframe';
 
 function _cloneProperties(node) {
     const attributes = node.attributes;
@@ -13,7 +11,7 @@ function _cloneProperties(node) {
 }
 
 export function registerSelectableFigure() {
-    AFRAME.registerComponent('selectable-check', {
+    aframe.registerComponent('selectable-check', {
         dependencies: ['raycaster'],
 
         init: function () {
