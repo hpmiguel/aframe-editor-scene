@@ -10,8 +10,10 @@ function _cloneProperties(node) {
     return originalAttrs;
 }
 
+export const selectableFigureAttr = 'selectable-check';
+
 export function registerSelectableFigure() {
-    aframe.registerComponent('selectable-check', {
+    aframe.registerComponent(selectableFigureAttr, {
         dependencies: ['raycaster'],
 
         init: function () {

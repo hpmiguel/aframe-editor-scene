@@ -1,3 +1,5 @@
+import {registerSelectableFigure, selectableFigureAttr} from '../selectable-figure/selectable-figure';
+
 class FiguresPalette {
 
     private componentId: string = 'figures-palette'
@@ -30,11 +32,11 @@ class FiguresPalette {
     ]
 
     constructor (attrs) {
-        this.append(attrs);
+        this.appendPalette(attrs);
         setTimeout(() => this.appendFigures(), 0);
     }
 
-    private append (attrs) {
+    private appendPalette (attrs) {
         const sceneEl = document.querySelector('a-scene');
         this.entityRef = document.createElement('a-entity');
         this.entityRef.setAttribute('id', this.componentId);
@@ -46,13 +48,15 @@ class FiguresPalette {
     }
 
     public appendFigures () {
+        // registering component to convert into selectable figures
+        registerSelectableFigure();
         const {x, y, z} = this.entityRef.getAttribute('position') as any;
         this.figures.forEach((fig, i) => {
             const figEl = document.createElement(fig.primitive);
             const figCoords = (x + 2) - (i + 1) + ` ${y} ${z}`;
             figEl.setAttribute('position', figCoords);
-            figEl.setAttribute('selectable-check', '');
             figEl.setAttribute('class', 'selectable');
+            figEl.setAttribute(selectableFigureAttr, '');
             let figProps = Object.keys(fig);
             figProps.forEach((key) => {
                 if (key !== 'primitive') figEl.setAttribute(key, fig[key]);

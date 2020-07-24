@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>dynamic-platforms</title>
-    <meta name="description" content="dynamic-platforms">
+    <title>aframe-vr-editor-scene</title>
+    <meta name="description" content="aframe-vr-editor-scene">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
   </head>
   <body>
     <a-scene>
@@ -17,13 +18,16 @@
         <a-entity id="camera" camera wasd-controls look-controls>
           <a-entity cursor="fuse: true; fuseTimeout: 500"
                     position="0 0 -0.5"
-                    geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
-                    material="color: red; shader: flat"
                     raycaster="far: 20; interval: 1000; objects: .selectable"
           ></a-entity>
-<!--            <a-entity laser-controls raycaster="objects: .selectable; far: 5"></a-entity>-->
         </a-entity>
       </a-entity>
+
+<!--      <a-entity raycaster="showLine: true; far: 100" line="color: orange; opacity: 0.5"></a-entity> -->
+<!--      <a-entity line="color: orange; opacity: 0.5; start: 0 1 -2.3; end: 0 1 -4"></a-entity>-->
+
+      <!-- With VR HeadSets-->
+      <!-- <a-entity laser-controls raycaster="far: 20; interval: 1000; objects: .selectable"></a-entity>-->
 
       <!-- Background sky. -->
       <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
