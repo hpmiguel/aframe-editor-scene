@@ -15,12 +15,21 @@
 
       <!-- Camera. -->
       <a-entity id="rig" position="-1 0.5 -2">
-        <a-entity id="camera" camera wasd-controls look-controls>
-          <a-entity cursor="fuse: true; fuseTimeout: 500"
-                    position="0 0 -0.5"
-                    raycaster="far: 20; interval: 1000; objects: .selectable"
-          ></a-entity>
-        </a-entity>
+        <!-- Mouse camera-->
+        <a-entity id="camera-mouse" camera wasd-controls look-controls
+                  cursor="rayOrigin:mouse"
+                  raycaster="objects: .selectable"
+        ></a-entity>
+        <!-- Fuse Camera -->
+<!--        <a-entity id="camera-fuse" camera wasd-controls look-controls>-->
+<!--          <a-entity id="cursor-camera-fuse"-->
+<!--                    cursor="fuse: true; fuseTimeout: 250"-->
+<!--                    raycaster="far: 20; interval: 250; objects: .selectable"-->
+<!--                    position="0 0 -0.5"-->
+<!--                    geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"-->
+<!--                    material="color: red; shader: flat"-->
+<!--          ></a-entity>-->
+<!--        </a-entity>-->
       </a-entity>
 
 <!--      <a-entity raycaster="showLine: true; far: 100" line="color: orange; opacity: 0.5"></a-entity> -->
