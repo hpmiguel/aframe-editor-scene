@@ -16,9 +16,13 @@
       <!-- Camera. -->
       <a-entity id="rig" position="-1 0.5 -2">
         <!-- Mouse camera-->
-        <a-entity id="camera-mouse" camera wasd-controls look-controls
+        <a-entity id="camera-mouse" camera wasd-controls
                   cursor="rayOrigin:mouse"
                   raycaster="objects: .selectable"
+                  super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;"
         ></a-entity>
         <!-- Fuse Camera -->
 <!--        <a-entity id="camera-fuse" camera wasd-controls look-controls>-->

@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "aframe": "^1.0.4",
+    "aframe-event-set-component": "^5.0.0",
+    "aframe-environment-component": "^2.0.0",
     "lodash-es": "^4.17.15",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "super-hands": "^3.0.0"
   },
   "devDependencies": {
     "webpack": "^4.29.5",
