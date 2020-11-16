@@ -10,11 +10,11 @@ function getWebpackConfig(env) {
     let mode, devtool, bundleName;
     if (env.production) {
         mode = 'production';
-        devtool = 'inline-source-map';
+        devtool = false;
         bundleName = '[name].[contentHash].js';
     } else if (env.development) {
         mode = 'development';
-        devtool = 'none';
+        devtool = 'eval-source-map';
         bundleName = 'main.bundle.js';
     }
     return {
