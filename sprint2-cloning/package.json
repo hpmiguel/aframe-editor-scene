@@ -5,15 +5,18 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --config=webpack.config.js --env development=true --host 0.0.0.0 --progress --hot --inline --port 9999",
-    "build": "webpack --config=webpack.config.js --env production=true"
+    "build": "webpack --config=webpack.config.js --env production=true",
+    "test:e2e": "cypress open"
   },
   "dependencies": {
     "aframe": "^1.0.4",
-    "aframe-event-set-component": "^5.0.0",
+    "@types/aframe": "^1.0.2",
     "aframe-environment-component": "^2.0.0",
+    "aframe-event-set-component": "^5.0.0",
+    "super-hands": "^3.0.0",
     "lodash-es": "^4.17.15",
     "rxjs": "^6.6.3",
-    "super-hands": "^3.0.0"
+    "cypress": "^5.6.0"
   },
   "devDependencies": {
     "webpack": "^5.4.0",
@@ -29,7 +32,9 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "clean-webpack-plugin": "^3.0.0",
-    "terser-webpack-plugin": "^5.0.3"
+    "terser-webpack-plugin": "^5.0.3",
+    "@compodoc/compodoc": "^1.1.11",
+    "@compodoc/ts-stats": "^1.1.1"
   },
   "keywords": [
     "aframe",
