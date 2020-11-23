@@ -22,3 +22,5 @@ class Rectangle extends Figure {
 }
 
 type Figures = Cone | Cylinder | Sphere | Rectangle;
+
+export { Figures }
