@@ -1,0 +1,4 @@
+.idea/
+sprint*/node_modules/
+sprint*/dist/
+sprint*/package-lock.json
