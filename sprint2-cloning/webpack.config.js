@@ -11,7 +11,7 @@ function getWebpackConfig(env) {
     if (env.production) {
         mode = 'production';
         devtool = false;
-        bundleName = '[name].[contentHash].js';
+        bundleName = '[name].bundle.js';
     } else if (env.development) {
         mode = 'development';
         devtool = 'eval-source-map';
@@ -82,7 +82,10 @@ function getWebpackConfig(env) {
                     collapseWhitespace: true,
                     removeComments: true
                 }
-            })]
+            })],
+            splitChunks: {
+                chunks: 'all',
+            }
         }
     };
 }
