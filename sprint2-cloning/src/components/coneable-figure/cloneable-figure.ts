@@ -1,26 +1,32 @@
-import {registerComponent} from 'aframe';
-import {SceneRef} from '../../services/scene-ref';
+import { registerComponent } from 'aframe';
 
 export const selectableFigureAttr = 'selectable-check';
 
-export function registerSelectableFigure() {
+export function registerSelectableFigure(idDest: string) {
+    const tableDest = document.querySelector(`#${idDest}`);
     const selectableFigureComponent = {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
 
+
             this.el.addEventListener('click', function (evt) {
-                _duplicateFigure(figSelected);
+                _duplicateFigure(figSelected, tableDest);
             });
         }
     }
     registerComponent(selectableFigureAttr, selectableFigureComponent);
 }
 
-function _duplicateFigure(figEl: HTMLElement) {
-    const sceneEl = SceneRef.getInstance().getSceneEl();
-    const figCoords = '0 0.5 1';
+function _duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
+    // Cloning figure
     const clonedFigureEl = figEl.cloneNode() as HTMLElement;
-    clonedFigureEl.setAttribute('position', figCoords);
-    sceneEl.appendChild(clonedFigureEl);
+
+    // // Setting destination position
+    // const {x, y, z} = parent.getAttribute('position') as any;
+    // const figCoords = `${x} ${y-1} ${z}`;
+    // clonedFigureEl.setAttribute('position', figCoords);
+
+    // Append to dest
+    parent.appendChild(clonedFigureEl);
 }

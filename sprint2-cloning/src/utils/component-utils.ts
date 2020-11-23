@@ -1,5 +1,5 @@
-import {Figures} from '../models/Figures';
-import {selectableFigureAttr} from '../components/coneable-figure/cloneable-figure';
+import { Figures } from '../models/Figures';
+import { selectableFigureAttr } from '../components/coneable-figure/cloneable-figure';
 
 export function cloneProperties(node) {
     const attributes = node.attributes;
