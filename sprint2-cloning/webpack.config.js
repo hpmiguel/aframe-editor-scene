@@ -15,7 +15,7 @@ function getWebpackConfig(env) {
     } else if (env.development) {
         mode = 'development';
         devtool = 'eval-source-map';
-        bundleName = 'main.bundle.js';
+        bundleName = '[name].bundle.js';
     }
     return {
         mode: mode,

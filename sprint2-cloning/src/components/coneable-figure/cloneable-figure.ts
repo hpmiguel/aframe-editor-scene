@@ -9,12 +9,11 @@ export function registerSelectableFigure(idDest: string) {
         init: function () {
             const figSelected = this.el;
 
-
             this.el.addEventListener('click', function (evt) {
                 _duplicateFigure(figSelected, tableDest);
             });
         }
-    }
+    };
     registerComponent(selectableFigureAttr, selectableFigureComponent);
 }
 
