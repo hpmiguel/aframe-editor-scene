@@ -7,4 +7,4 @@ npm start
 
 ## Quickstart
 
-You can select figures from palette and duplicate it
+You can select figures from palette and duplicate it on podium

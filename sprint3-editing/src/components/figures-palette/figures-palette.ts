@@ -1,7 +1,7 @@
 import {registerSelectableFigure} from '../coneable-figure/cloneable-figure';
 import {SceneRef} from '../../services/scene-ref';
 import {Figures} from '../../models/Figures';
-import {appendFigure} from '../../utils/component-utils';
+import {appendFigure} from '../../utils/figure-utils';
 
 class FiguresPalette {
 

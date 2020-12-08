@@ -18,12 +18,21 @@
         <!-- Mouse camera-->
         <a-entity id="camera-mouse" camera wasd-controls
                   cursor="rayOrigin:mouse"
-                  raycaster="objects: .selectable"
-                  super-hands="colliderEvent: raycaster-intersection;
-                               colliderEventProperty: els;
-                               colliderEndEvent:raycaster-intersection-cleared;
-                               colliderEndEventProperty: clearedEls;"
+                  raycaster="object: [gui-interactable]"
+
         ></a-entity>
+<!--        super-hands="colliderEvent: raycaster-intersection;-->
+<!--        colliderEventProperty: els;-->
+<!--        colliderEndEvent:raycaster-intersection-cleared;-->
+<!--        colliderEndEventProperty: clearedEls;"-->
+
+<!--        <a-camera look-controls wasd-controls position="0 0 0">-->
+<!--          <a-gui-cursor id="cursor"-->
+<!--                        raycaster="objects: [gui-interactable]"-->
+<!--                        fuse="false"-->
+<!--          ></a-gui-cursor>-->
+<!--        </a-camera>-->
+
       </a-entity>
 
       <!-- Background sky. -->

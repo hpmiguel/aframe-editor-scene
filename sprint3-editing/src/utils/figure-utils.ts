@@ -1,5 +1,6 @@
 import { Figures } from '../models/Figures';
 import { selectableFigureAttr } from '../components/coneable-figure/cloneable-figure';
+import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
 
 export function cloneProperties(node) {
     const attributes = node.attributes;
@@ -41,8 +42,10 @@ export function appendFigure(fig: Figures, figCoords: string, parent: HTMLElemen
     figEl.setAttribute(selectableFigureAttr, ''); // My custom behaviour
 
     // Superhands Props
-    setInteractionProperties(figEl);
-    setInteractionBehaviour(figEl);
+    // setInteractionProperties(figEl);
+    // setInteractionBehaviour(figEl);
 
     parent.appendChild(figEl);
+
+    new EditMenuFigure(figEl);
 }
