@@ -1,15 +1,19 @@
+// Global dependecies
+
 import 'aframe';
 import 'super-hands';
 import 'aframe-gui';
 
-import { FiguresPalette } from "./components/figures-palette/figures-palette";
 import { Figures } from './models/Figures';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './utils/figure-utils';
+import { registerColorWheel } from './vendor/aframe-colorwheel';
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
+
+    registerColorWheel();
 
     const sceneEl = SceneRef.getInstance().getSceneEl();
 

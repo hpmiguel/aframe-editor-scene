@@ -1,14 +1,17 @@
 import {createLabel, createSlider} from '../../utils/gui-utils';
+import {colorListenerAttr, registerColorListener} from '../color-listener/color-listener';
 
 class EditMenuFigure {
 
     private entityRef: HTMLElement;
 
     constructor(figEditNode: HTMLElement) {
-        this.createMenuContainer(figEditNode);
+        // this.createMenuContainer(figEditNode);
+        //
+        // // Add controls properties
+        // this.addControlEditOpacity(this.entityRef);
 
-        // Add controls properties
-        this.addControlEditOpacity(figEditNode);
+        this.addColorPicker(figEditNode);
     }
 
     private createMenuContainer(figEditNode: HTMLElement) {
@@ -28,7 +31,7 @@ class EditMenuFigure {
         figEditNode.appendChild(this.entityRef);
     }
 
-    private addControlEditOpacity(figEditNode) {
+    private addControlEditOpacity(menuParent: HTMLElement) {
         // Label
         const label = createLabel('opacity');
         this.entityRef.appendChild(label);
@@ -45,10 +48,21 @@ class EditMenuFigure {
         editControl.setAttribute('onclick', customAction);
 
         window[customAction] = function (event, percent) {
-            figEditNode.setAttribute('opacity', percent);
+            menuParent.setAttribute('opacity', percent);
         }
 
         this.entityRef.appendChild(editControl);
+    }
+
+    private addColorPicker(figEditNode: HTMLElement) {
+        const colorPicker = document.createElement('a-entity');
+        colorPicker.setAttribute('colorwheel', '');
+        colorPicker.setAttribute('position', '0 1 0');
+        figEditNode.appendChild(colorPicker);
+
+        // Event listener color changes
+        registerColorListener();
+        figEditNode.setAttribute(colorListenerAttr, '');
     }
 
 }
