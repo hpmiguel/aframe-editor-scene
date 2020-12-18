@@ -13,7 +13,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const sceneEl = SceneRef.getInstance().getSceneEl();
 
-    // Render table to append cloned figures
+    // Test figure to develop properties controls menu
+    const box: Figures = {
+        primitive: 'a-box',
+        color: 'yellow',
+        height: 0.6,
+        width: 0.6,
+        depth: 0.6
+    };
+    appendFigure(box, '-0.8 0.1 1.8', sceneEl);
+
+    // // Render table to append cloned figures
     // const table =  {
     //     id: 'table',
     //     primitive: 'a-plane',
@@ -23,16 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //     rotation: "-90 0 0"
     // };
     // appendFigure(table, '-0.8 0.1 1.8', sceneEl);
-
-    const box: Figures = {
-                primitive: 'a-box',
-                color: 'yellow',
-                height: 0.6,
-                width: 0.6,
-                depth: 0.6
-            };
-    appendFigure(box, '-0.8 0.1 1.8', sceneEl);
-
+    //
     // const initialFigures: Array<Figures> = [
     //     {
     //         primitive: 'a-cone',

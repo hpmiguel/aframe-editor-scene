@@ -1,54 +1,109 @@
-import {createLabel, createSlider} from '../../utils/gui-utils';
+import {
+    createButton,
+    createContainer,
+    createLabel,
+    createSlider,
+    rgbToHex
+} from '../../utils/gui-utils';
 
 class EditMenuFigure {
 
     private entityRef: HTMLElement;
 
+    private figure: HTMLElement;
+    private RGBFigure: { red: number; green: number; blue: number; } = { red: 0, green: 0, blue: 0 };
+
     constructor(figEditNode: HTMLElement) {
-        this.createMenuContainer(figEditNode);
+        this.figure = figEditNode;
+
+        this.createMenuContainer();
 
         // Add controls properties
-        this.addControlEditOpacity(figEditNode);
+        this.addControlEditColor();
+        // this.addControlEditOpacity(figEditNode);
     }
 
-    private createMenuContainer(figEditNode: HTMLElement) {
-        this.entityRef = document.createElement('a-gui-flex-container');
-
-        // Styles Menu
-        this.entityRef.setAttribute('flex-direction', 'column');
-        this.entityRef.setAttribute('justify-content', 'center');
-        this.entityRef.setAttribute('align-items', 'normal');
-        this.entityRef.setAttribute('component-padding', '0.1');
-        this.entityRef.setAttribute('opacity', '0.7');
-        this.entityRef.setAttribute('width', '0.7');
-        this.entityRef.setAttribute('height', '4.5');
-        this.entityRef.setAttribute('position', '0 1s 0');
-        this.entityRef.setAttribute('rotation', '0 0 0');
-
-        figEditNode.appendChild(this.entityRef);
+    private createMenuContainer() {
+        this.entityRef = createContainer({
+            width: '0.7',
+            height: '3',
+            position: '0 1.5 0'
+        });
+        this.figure.appendChild(this.entityRef);
     }
 
-    private addControlEditOpacity(figEditNode) {
+    private addControlEditOpacity() {
         // Label
-        const label = createLabel('opacity');
+        const label = createLabel('Opacity');
         this.entityRef.appendChild(label);
 
         // Create Slider
-        const editControl = createSlider({
-            width: '2',
-            height: '0.5',
-            percent: '0.85s'
+        const opacityControl = createSlider({
+            percent: '0.5'
         });
 
         // Interaction
-        const customAction = 'slideOpacity' + new Date().getTime();
-        editControl.setAttribute('onclick', customAction);
+        const customAction = 'slideOpacity';
+        opacityControl.setAttribute('onclick', customAction);
 
         window[customAction] = function (event, percent) {
-            figEditNode.setAttribute('opacity', percent);
+            this.figure.setAttribute('opacity', percent);
         }
 
-        this.entityRef.appendChild(editControl);
+        this.entityRef.appendChild(opacityControl);
+    }
+
+    private addControlEditColor() {
+        // Label
+        const label = createLabel('Color');
+        this.entityRef.appendChild(label);
+
+        // Buttons
+        ['red', 'green', 'blue'].forEach(rgbComponent => {
+            this.addContainerButton(rgbComponent);
+        });
+    }
+
+    private addContainerButton(rgbComponent: string) {
+        const containerButtons = createContainer({
+            'flex-direction': 'row',
+            height: '0.6'
+        });
+        this.addButtonColor(rgbComponent, 'increase', containerButtons);
+        this.addButtonColor(rgbComponent, 'decrease', containerButtons);
+        this.entityRef.appendChild(containerButtons);
+    }
+
+    private addButtonColor(rgbComponent: string, operation: string, container: HTMLElement) {
+        // Create Button
+        const buttonControl = createButton({
+            value: operation === 'increase' ? '+' : '-',
+            'background-color': rgbComponent
+        });
+
+        // Interaction
+        const customAction = operation + rgbComponent;
+        buttonControl.setAttribute('onclick', customAction);
+
+        const RGBFigure = this.RGBFigure;
+        const figure = this.figure;
+
+        window[customAction] = function (event) {
+            const interval = 25;
+            const op = operation === 'increase' ? interval : -interval;
+            const newVal = RGBFigure[rgbComponent] + op;
+
+            if (newVal >= 0 && newVal <= 255) {
+                RGBFigure[rgbComponent] = newVal;
+            }
+
+            const { red, green, blue } =  RGBFigure;
+            const colorHex = rgbToHex(red, green, blue);
+
+            figure.setAttribute('color', colorHex);
+        }
+
+        container.appendChild(buttonControl);
     }
 
 }
