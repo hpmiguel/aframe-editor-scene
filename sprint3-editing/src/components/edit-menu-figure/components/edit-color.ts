@@ -1,10 +1,11 @@
 import {createButton, createContainer, createLabel, rgbToHex} from "../../../utils/gui-utils";
+import {Figures} from "../../../models/figures";
 
 const _RGBFigure: { red: number; green: number; blue: number; } = { red: 0, green: 0, blue: 0 };
-let _figure: HTMLElement;
+let _figure: Figures;
 let _parentMenu: HTMLElement;
 
-export function addControlEditColor(parentMenu: HTMLElement, figure: HTMLElement) {
+export function addControlEditColor(parentMenu: HTMLElement, figure: Figures) {
     _parentMenu = parentMenu;
     _figure = figure;
 
@@ -51,7 +52,7 @@ function addButtonColor(rgbComponent: string, operation: string, container: HTML
         const { red, green, blue } =  _RGBFigure;
         const colorHex = rgbToHex(red, green, blue);
 
-        _figure.setAttribute('color', colorHex);
+        _figure.setColor(colorHex);
     }
 
     container.appendChild(buttonControl);

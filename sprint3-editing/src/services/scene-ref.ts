@@ -1,3 +1,5 @@
+// Singleton pattern
+
 class SceneRef {
     private static instance: SceneRef;
 

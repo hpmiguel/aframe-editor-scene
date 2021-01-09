@@ -3,20 +3,23 @@ import {
 } from '../../utils/gui-utils';
 import {addControlEditOpacity} from "./components/edit-opacity";
 import {addControlEditColor} from "./components/edit-color";
+import {addControlEditSize} from "./components/edit-size";
+import {Figures} from "../../models/figures";
 
 class EditMenuFigure {
 
     private entityRef: HTMLElement;
-    private readonly figure: HTMLElement;
+    private readonly figure: Figures;
 
-    constructor(figEditNode: HTMLElement) {
-        this.figure = figEditNode;
+    constructor(fig: Figures) {
+        this.figure = fig;
 
         this.createMenuContainer();
 
         // Add controls properties
-        // addControlEditColor(this.entityRef, figEditNode);
-        addControlEditOpacity(this.entityRef, figEditNode);
+        // addControlEditColor(this.entityRef, fig);
+        // addControlEditOpacity(this.entityRef, fig);
+        addControlEditSize(this.entityRef, fig);
     }
 
     private createMenuContainer() {
@@ -25,7 +28,7 @@ class EditMenuFigure {
             height: '3',
             position: '0 1.5 0'
         });
-        this.figure.appendChild(this.entityRef);
+        this.figure.htmlRef.appendChild(this.entityRef);
     }
 
 }

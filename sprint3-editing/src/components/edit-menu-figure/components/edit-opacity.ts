@@ -1,6 +1,7 @@
 import {createLabel, createSlider} from "../../../utils/gui-utils";
+import {Figures} from "../../../models/figures";
 
-export function addControlEditOpacity(parentMenu: HTMLElement, figure: HTMLElement) {
+export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figures) {
     // Label
     const label = createLabel('Opacity');
     parentMenu.appendChild(label);
@@ -15,7 +16,7 @@ export function addControlEditOpacity(parentMenu: HTMLElement, figure: HTMLEleme
     opacityControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event, percent) {
-        figure.setAttribute('opacity', percent);
+        figure.setOpacity(percent);
     }
 
     parentMenu.appendChild(opacityControl);

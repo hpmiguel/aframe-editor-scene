@@ -1,5 +1,5 @@
-import { Figures } from '../models/Figures';
-import { selectableFigureAttr } from '../components/coneable-figure/cloneable-figure';
+import { Figures } from '../models/figures';
+import { selectableFigureAttr } from '../components/behaviour-components/coneable-figure/cloneable-figure';
 import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
 
 export function cloneProperties(node) {
@@ -47,5 +47,7 @@ export function appendFigure(fig: Figures, figCoords: string, parent: HTMLElemen
 
     parent.appendChild(figEl);
 
-    new EditMenuFigure(figEl);
+    fig.htmlRef = figEl;
+
+    new EditMenuFigure(fig);
 }

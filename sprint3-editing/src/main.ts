@@ -3,7 +3,7 @@ import 'super-hands';
 import 'aframe-gui';
 
 import { FiguresPalette } from "./components/figures-palette/figures-palette";
-import { Figures } from './models/Figures';
+import { Box } from './models/figures';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './utils/figure-utils';
 
@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const sceneEl = SceneRef.getInstance().getSceneEl();
 
     // Test figure to develop properties controls menu
-    const box: Figures = {
+    const box: Box = new Box({
         primitive: 'a-box',
         color: 'yellow',
         height: 0.6,
         width: 0.6,
         depth: 0.6
-    };
+    });
     appendFigure(box, '-0.8 0.1 1.8', sceneEl);
 
     // // Render table to append cloned figures
