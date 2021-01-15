@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --config=webpack.config.js --env development=true --host 0.0.0.0 --progress --hot --inline --port 9999",
+    "start": "webpack serve --config=webpack.config.js --env development=true --progress --hot --inline --port 9999",
     "build": "webpack --config=webpack.config.js --env production=true",
     "test:e2e": "cypress open"
   },

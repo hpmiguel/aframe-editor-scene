@@ -112,3 +112,18 @@ export function createSlider(props?): HTMLElement {
 
     return editControl;
 }
+
+export function createToggle(props?): HTMLElement {
+    let editControl = document.createElement('a-gui-toggle');
+
+    // Style properties
+    const defaultProps = {
+        width: '2',
+        height: '0.5'
+    };
+
+    setHtmlTags(editControl, defaultProps);
+    setHtmlTags(editControl, props);
+
+    return editControl;
+}

@@ -20,6 +20,11 @@ class Figure {
     resize(scaleFactor: number) {
         (this.htmlRef as any).object3D.scale.multiplyScalar(scaleFactor);
     }
+
+    toggleWireframe() {
+        const wireframeStatus = this.htmlRef.getAttribute('wireframe') === "true";
+        this.htmlRef.setAttribute('wireframe', String(!wireframeStatus));
+    }
 }
 
 class Cone extends Figure {
