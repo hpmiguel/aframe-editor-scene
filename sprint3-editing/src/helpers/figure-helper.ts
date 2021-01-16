@@ -1,8 +1,8 @@
-import { Figures } from '../models/figures';
+import { Figure } from '../models/figure';
 import { selectableFigureAttr } from '../components/behaviour-components/coneable-figure/cloneable-figure';
 import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
 
-export function cloneProperties(node) {
+export function cloneProperties(node): any {
     const attributes = node.attributes;
     let originalAttrs = {};
     for(let i = 0; i < attributes.length; i++) {
@@ -10,6 +10,15 @@ export function cloneProperties(node) {
         originalAttrs[attr.nodeName] = attr.nodeValue;
     }
     return originalAttrs;
+}
+
+export function materialToAttr(material: any): string {
+    const materialProps = Object.keys(material);
+    let materialAttr: string = '';
+    materialProps.forEach(key => {
+        materialAttr += `${key}: ${String(material[key])};`;
+    });
+    return materialAttr;
 }
 
 function setInteractionProperties(figEl) {
@@ -26,7 +35,7 @@ function setInteractionBehaviour(figEl) {
     figEl.setAttribute('event-set__dragoff', '_event: dragover-end; material.wireframe: false');
 }
 
-export function appendFigure(fig: Figures, figCoords: string, parent: HTMLElement) {
+export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement) {
     // Initializing fig html element
     const figEl = document.createElement(fig.primitive);
 

@@ -1,11 +1,11 @@
-import {createButton, createContainer, createLabel, rgbToHex} from "../../../utils/gui-utils";
-import {Figures} from "../../../models/figures";
+import {createButton, createContainer, createLabel, rgbToHex} from "../../../helpers/gui-helper";
+import {Figure} from "../../../models/figure";
 
 const _RGBFigure: { red: number; green: number; blue: number; } = { red: 0, green: 0, blue: 0 };
-let _figure: Figures;
+let _figure: Figure;
 let _parentMenu: HTMLElement;
 
-export function addControlEditColor(parentMenu: HTMLElement, figure: Figures) {
+export function addControlEditColor(parentMenu: HTMLElement, figure: Figure) {
     _parentMenu = parentMenu;
     _figure = figure;
 

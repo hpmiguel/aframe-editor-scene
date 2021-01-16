@@ -1,7 +1,7 @@
 import {registerSelectableFigure} from '../behaviour-components/coneable-figure/cloneable-figure';
 import {SceneRef} from '../../services/scene-ref';
-import {Figures} from '../../models/figures';
-import {appendFigure} from '../../utils/figure-utils';
+import {Figure} from '../../models/figure';
+import {appendFigure} from '../../helpers/figure-helper';
 
 class FiguresPalette {
 
@@ -9,10 +9,10 @@ class FiguresPalette {
 
     private entityRef: HTMLElement;
 
-    private figures: Array<Figures>;
+    private figures: Array<Figure>;
 
     constructor (attrs, initialFigures, idDest) {
-        this.figures = initialFigures || new Array<Figures>();
+        this.figures = initialFigures || new Array<Figure>();
         this.appendPalette(attrs);
         setTimeout(() => {
             // registering component to convert into selectable figures (Custom behaviour)

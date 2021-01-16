@@ -1,7 +1,7 @@
-import {createLabel, createSlider} from "../../../utils/gui-utils";
-import {Figures} from "../../../models/figures";
+import {createLabel, createSlider} from "../../../helpers/gui-helper";
+import {Figure} from "../../../models/figure";
 
-export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figures) {
+export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figure) {
     // Label
     const label = createLabel('Opacity');
     parentMenu.appendChild(label);

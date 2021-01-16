@@ -1,10 +1,10 @@
-import {createButton, createContainer, createLabel} from "../../../utils/gui-utils";
-import {Figures} from "../../../models/figures";
+import {createButton, createContainer, createLabel} from "../../../helpers/gui-helper";
+import {Figure} from "../../../models/figure";
 
-let _figure: Figures;
+let _figure: Figure;
 let _parentMenu: HTMLElement;
 
-export function addControlEditSize(parentMenu: HTMLElement, figure: Figures) {
+export function addControlEditSize(parentMenu: HTMLElement, figure: Figure) {
     _parentMenu = parentMenu;
     _figure = figure;
 

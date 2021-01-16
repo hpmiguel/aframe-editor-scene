@@ -1,16 +1,25 @@
+import {materialToAttr} from "../helpers/figure-helper";
+
 class Figure {
     htmlRef: HTMLElement;
     primitive: string;
     color: string;
+    material: string;
 
-    constructor(fig: {primitive: string, color: string}) {
-        const {primitive, color} = fig;
+    constructor(fig: {primitive: string, color: string, material?: any}) {
+        const {primitive, color, material} = fig;
         this.primitive = primitive;
         this.color = color;
+        this.material = material && materialToAttr(material);
     }
 
-    setColor(colorHex: string) {
-        this.htmlRef.setAttribute('color', colorHex);
+    setColor(color: string) {
+        this.htmlRef.setAttribute('color', color);
+    }
+
+    setMaterial(material: any) {
+        const materialAttr: string = material && materialToAttr(material);
+        this.htmlRef.setAttribute('material', materialAttr);
     }
 
     setOpacity(percent: string) {
@@ -66,9 +75,9 @@ class Box extends Figure {
     width: number;
     depth: number;
 
-    constructor(box: {primitive: string, color: string, height: number, width: number, depth: number}) {
-        const {primitive, color, height, width, depth} = box;
-        super({primitive,color});
+    constructor(box: {primitive: string, color: string, height: number, width: number, depth: number, material?: any}) {
+        const {primitive, color, height, width, depth, material} = box;
+        super({primitive, color, material});
         this.height = height;
         this.width = width;
         this.depth = depth;
@@ -89,6 +98,4 @@ class Plane extends Figure {
     }
 }
 
-type Figures = Cone | Cylinder | Sphere | Box | Plane;
-
-export { Figures, Cone, Cylinder, Sphere, Box, Plane }
+export { Figure, Cone, Cylinder, Sphere, Box, Plane }

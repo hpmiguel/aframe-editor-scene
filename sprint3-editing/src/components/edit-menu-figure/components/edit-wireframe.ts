@@ -1,7 +1,7 @@
-import {Figures} from "../../../models/figures";
-import {createLabel, createToggle} from "../../../utils/gui-utils";
+import {Figure} from "../../../models/figure";
+import {createToggle} from "../../../helpers/gui-helper";
 
-export function addControlEditWireframe(parentMenu: HTMLElement, figure: Figures) {
+export function addControlEditWireframe(parentMenu: HTMLElement, figure: Figure) {
     // Create Slider
     const wireframeControl = createToggle({
         checked: false
