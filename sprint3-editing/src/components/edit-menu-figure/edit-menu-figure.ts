@@ -7,8 +7,9 @@ import {addControlEditSize} from "./components/edit-size";
 import {Figure} from "../../models/figure";
 import {addControlEditWireframe} from "./components/edit-wireframe";
 import {addControlEditMaterial} from "./components/edit-material";
+import {addControlEditShadow} from './components/edit-shadow';
 
-class EditMenuFigure {
+export class EditMenuFigure {
 
     private entityRef: HTMLElement;
     private readonly figure: Figure;
@@ -23,7 +24,8 @@ class EditMenuFigure {
         // addControlEditOpacity(this.entityRef, fig);
         // addControlEditSize(this.entityRef, fig);
         // addControlEditWireframe(this.entityRef, fig);
-        addControlEditMaterial(this.entityRef, fig);
+        // addControlEditMaterial(this.entityRef, fig);
+        addControlEditShadow(this.entityRef, fig);
     }
 
     private createMenuContainer() {
@@ -36,5 +38,3 @@ class EditMenuFigure {
     }
 
 }
-
-export { EditMenuFigure }

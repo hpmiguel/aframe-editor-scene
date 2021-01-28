@@ -11,6 +11,7 @@ export function registerSelectableFigure(idDest: string) {
             let lastClick = null;
 
             this.el.addEventListener('click', function (evt) {
+                // Detect double click manually implementation
                 if(evt instanceof MouseEvent) {
                     if (!lastClick) {
                         lastClick = new Date().getTime();

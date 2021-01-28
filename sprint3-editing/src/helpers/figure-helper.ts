@@ -12,11 +12,11 @@ export function cloneProperties(node): any {
     return originalAttrs;
 }
 
-export function materialToAttr(material: any): string {
-    const materialProps = Object.keys(material);
+export function propsInLine(props: any): string {
+    const propsKeys = Object.keys(props);
     let materialAttr: string = '';
-    materialProps.forEach(key => {
-        materialAttr += `${key}: ${String(material[key])};`;
+    propsKeys.forEach(key => {
+        materialAttr += `${key}: ${String(props[key])}; `;
     });
     return materialAttr;
 }
@@ -42,7 +42,7 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     // Setting basic props
     figEl.setAttribute('position', figCoords);
     const figProps = Object.keys(fig);
-    figProps.forEach((key) => {
+    figProps.forEach(key => {
         if (key !== 'primitive') figEl.setAttribute(key, fig[key]);
     });
 

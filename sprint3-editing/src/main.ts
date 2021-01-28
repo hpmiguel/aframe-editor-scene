@@ -7,6 +7,7 @@ import { Box } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './helpers/figure-helper';
 import { texturesPath } from "./utils/constants";
+import {LightScene} from "./components/light-scene/light-scene";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -14,19 +15,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const sceneEl = SceneRef.getInstance().getSceneEl();
 
+    const lightScene = new LightScene({
+        type: 'directional',
+        castShadow: true,
+        intensity: 0.98,
+        shadowCameraVisible: false,
+        position: "1 2 1.8"
+    });
+
     // Test figure to develop properties controls menu
     const box = new Box({
-        primitive: 'a-box',
-        color: 'white',
-        height: 0.6,
-        width: 0.6,
-        depth: 0.6,
+        color: 'blue',
+        height: 0.2,
+        width: 0.2,
+        depth: 0.2,
         material: {
             src: texturesPath + 'paper.jpg',
             roughness: 1
-        }
+        },
+        shadow: true
     });
-    appendFigure(box, '-0.8 0.1 1.8', sceneEl);
+    appendFigure(box, '-0.8 0.4 1.8', sceneEl);
 
     // // Render table to append cloned figures
     // const table =  {

@@ -3,7 +3,7 @@ import {SceneRef} from '../../services/scene-ref';
 import {Figure} from '../../models/figure';
 import {appendFigure} from '../../helpers/figure-helper';
 
-class FiguresPalette {
+export class FiguresPalette {
 
     private componentId: string = 'figures-palette';
 
@@ -44,5 +44,3 @@ class FiguresPalette {
     }
 
 }
-
-export { FiguresPalette }
