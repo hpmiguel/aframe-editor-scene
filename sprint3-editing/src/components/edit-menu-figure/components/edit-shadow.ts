@@ -4,7 +4,7 @@ import {createToggle} from '../../../helpers/gui-helper';
 export function addControlEditShadow(parentMenu: HTMLElement, figure: Figure) {
     // Create Toggle
     const shadowControl = createToggle({
-        checked: false
+        value: 'Shadow'
     });
 
     // Interaction

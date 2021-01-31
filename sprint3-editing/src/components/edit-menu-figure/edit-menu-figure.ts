@@ -20,19 +20,19 @@ export class EditMenuFigure {
         this.createMenuContainer();
 
         // Add controls properties
-        // addControlEditColor(this.entityRef, fig);
-        // addControlEditOpacity(this.entityRef, fig);
-        // addControlEditSize(this.entityRef, fig);
-        // addControlEditWireframe(this.entityRef, fig);
-        // addControlEditMaterial(this.entityRef, fig);
+        addControlEditColor(this.entityRef, fig);
+        addControlEditOpacity(this.entityRef, fig);
+        addControlEditSize(this.entityRef, fig);
+        addControlEditWireframe(this.entityRef, fig);
+        addControlEditMaterial(this.entityRef, fig);
         addControlEditShadow(this.entityRef, fig);
     }
 
     private createMenuContainer() {
         this.entityRef = createContainer({
-            width: '0.7',
-            height: '1',
-            position: '0 1.5 0'
+            width: '1.3',
+            height: '2.9',
+            position: '0 2 0'
         });
         this.figure.htmlRef.appendChild(this.entityRef);
     }

@@ -4,7 +4,7 @@ import {createToggle} from "../../../helpers/gui-helper";
 export function addControlEditWireframe(parentMenu: HTMLElement, figure: Figure) {
     // Create Toggle
     const wireframeControl = createToggle({
-        checked: false
+        value: 'Wireframe'
     });
 
     // Interaction

@@ -31,9 +31,9 @@ export function createContainer(props?): HTMLElement {
         'align-items': 'normal',
         'component-padding': '0.1',
         opacity: '0.7',
-        width: '1',
-        height: '2',
-        position: '0 0 0'
+        width: '0.8',
+        height: '0.25',
+        position: '0 0 0.05 0'
     }
 
     setHtmlTags(containerGui, defaultProps);
@@ -42,17 +42,19 @@ export function createContainer(props?): HTMLElement {
     return containerGui;
 }
 
-export function createLabel(text: string): HTMLElement {
+export function createLabel(text: string, props?: any): HTMLElement {
     const labelGui = document.createElement('a-gui-label');
 
-    const props = {
-        width: '2',
-        height: '0.5',
+    const defaultProps = {
+        width: '1',
+        height: '0.2',
         value: text,
         'font-family': 'Arial',
+        'font-size': '80px',
         margin: "0 0 0.05 0"
     }
 
+    setHtmlTags(labelGui, defaultProps);
     setHtmlTags(labelGui, props);
 
     return labelGui;
@@ -85,9 +87,10 @@ export function createButton(props?): HTMLElement {
 
     // Style properties
     const defaultProps = {
-        width: '0.5',
-        height: '0.5',
+        width: '0.2',
+        height: '0.2',
         'font-family': 'Arial',
+        'font-size': '80px',
         'font-color': '#212121'
     };
 
@@ -102,9 +105,10 @@ export function createSlider(props?): HTMLElement {
 
     // Style properties
     const defaultProps = {
-        width: '2',
-        height: '0.5',
-        percent: '0.9'
+        width: '1',
+        height: '0.3',
+        percent: '0.9',
+        margin: '0 0 0.05 0'
     };
 
     setHtmlTags(editControl, defaultProps);
@@ -118,8 +122,10 @@ export function createToggle(props?): HTMLElement {
 
     // Style properties
     const defaultProps = {
-        width: '2',
-        height: '0.5'
+        width: '0.9',
+        height: '0.2',
+        'font-size': '70px',
+        margin: '0 0 0.05 0'
     };
 
     setHtmlTags(editControl, defaultProps);

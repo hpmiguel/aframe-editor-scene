@@ -5,7 +5,7 @@ import 'aframe-gui';
 import { FiguresPalette } from "./components/figures-palette/figures-palette";
 import { Box } from './models/figure';
 import { SceneRef } from './services/scene-ref';
-import { appendFigure } from './helpers/figure-helper';
+import {appendFigure} from './helpers/figure-helper';
 import { texturesPath } from "./utils/constants";
 import {LightScene} from "./components/light-scene/light-scene";
 
@@ -25,22 +25,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Test figure to develop properties controls menu
     const box = new Box({
-        color: 'blue',
-        height: 0.2,
-        width: 0.2,
-        depth: 0.2,
+        color: 'white',
+        height: 0.5,
+        width: 0.5,
+        depth: 0.5,
         material: {
             src: texturesPath + 'paper.jpg',
             roughness: 1
         },
-        shadow: true
+        shadow: false
     });
     appendFigure(box, '-0.8 0.4 1.8', sceneEl);
 
     // // Render table to append cloned figures
     // const table =  {
     //     id: 'table',
-    //     primitive: 'a-plane',
     //     color: 'purple',
     //     height: 1,
     //     width: 2,
@@ -50,18 +49,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //
     // const initialFigures: Array<Figures> = [
     //     {
-    //         primitive: 'a-cone',
     //         color: 'red',
     //         'radius-bottom': 0.3
     //     },
     //     {
-    //         primitive: 'a-cylinder',
     //         color: 'blue',
     //         radius: 0.3,
     //         height: 1
     //     },
     //     {
-    //         primitive: 'a-sphere',
     //         color: 'green',
     //         radius: 0.3
     //     },

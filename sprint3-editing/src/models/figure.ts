@@ -2,13 +2,14 @@ import {propsInLine} from "../helpers/figure-helper";
 
 class Figure {
     htmlRef: HTMLElement;
-    primitive: string = 'a-box';
+    primitive: string;
     color: string;
     material: string;
     shadow: string;
 
-    constructor(fig: {color: string, material?: any, shadow?: boolean}) {
-        const {color, material, shadow} = fig;
+    constructor(fig: {primitive: string, color: string, material?: any, shadow?: boolean}) {
+        const {primitive, color, material, shadow} = fig;
+        this.primitive = primitive;
         this.color = color;
         this.material = material && propsInLine(material);
         this.shadow = `receive: ${shadow}`;
@@ -42,39 +43,42 @@ class Figure {
     }
 }
 
-// class Cone extends Figure {
-//     'radius-bottom': number;
-//     height: number;
-//
-//     constructor(cone: {primitive: string, color: string, 'radius-bottom': number, height: number}) {
-//         const {primitive, color, height} = cone;
-//         super({primitive, color});
-//         this['radius-bottom'] = cone['radius-bottom'];
-//         this.height = height;
-//     }
-// }
-//
-// class Cylinder extends Figure {
-//     radius: number;
-//     height: number;
-//
-//     constructor(cyl: {primitive: string, color: string, height: number, radius: number}) {
-//         const {primitive, color, height, radius} = cyl;
-//         super({primitive,color});
-//         this.height = height;
-//         this.radius = radius;
-//     }
-// }
-//
-// class Sphere extends Figure {
-//     radius: number;
-//
-//     constructor(sphere: {primitive: string, color: string, radius: number}) {
-//         const {primitive, color, radius} = sphere;
-//         super({primitive,color});
-//         this.radius = radius;
-//     }
-// }
+class Cone extends Figure {
+    'radius-bottom': number;
+    height: number;
+
+    constructor(cone: {color: string, 'radius-bottom': number, height: number, material?: any, shadow?: boolean}) {
+        const {color, height, material, shadow} = cone;
+        const primitive: string = 'a-cone';
+        super({primitive, color, material, shadow});
+        this['radius-bottom'] = cone['radius-bottom'];
+        this.height = height;
+    }
+}
+
+class Cylinder extends Figure {
+    radius: number;
+    height: number;
+
+    constructor(cyl: {color: string, height: number, radius: number, material?: any, shadow?: boolean}) {
+        const {color, height, radius, material, shadow} = cyl;
+        const primitive: string = 'a-cylinder';
+        super({primitive, color, material, shadow});
+        this.height = height;
+        this.radius = radius;
+    }
+}
+
+class Sphere extends Figure {
+    radius: number;
+
+    constructor(sphere: {color: string, radius: number, material?: any, shadow?: boolean}) {
+        const {color, radius, material, shadow} = sphere;
+        const primitive: string = 'a-sphere';
+        super({primitive, color, material, shadow});
+        this.radius = radius;
+    }
+}
 
 class Box extends Figure {
     height: number;
@@ -83,26 +87,27 @@ class Box extends Figure {
 
     constructor(box: {color: string, height: number, width: number, depth: number, material?: any, shadow?: boolean}) {
         const {color, height, width, depth, material, shadow} = box;
-        super({color, material, shadow});
+        const primitive: string = 'a-box';
+        super({primitive, color, material, shadow});
         this.height = height;
         this.width = width;
         this.depth = depth;
     }
 }
 
-// class Plane extends Figure {
-//     height: number;
-//     width: number;
-//     rotation: string;
-//
-//     constructor(plane: {primitive: string, color: string, height: number, width: number, rotation: string}) {
-//         const {primitive, color, height, width, rotation} = plane;
-//         super({primitive,color});
-//         this.height = height;
-//         this.width = width;
-//         this.rotation = rotation;
-//     }
-// }
+class Plane extends Figure {
+    height: number;
+    width: number;
+    rotation: string;
 
-// export { Figure, Cone, Cylinder, Sphere, Box, Plane }
-export { Figure, Box }
+    constructor(plane: {primitive: string, color: string, height: number, width: number, rotation: string}) {
+        const {color, height, width, rotation} = plane;
+        const primitive: string = 'a-plane';
+        super({primitive, color});
+        this.height = height;
+        this.width = width;
+        this.rotation = rotation;
+    }
+}
+
+export { Figure, Cone, Cylinder, Sphere, Box, Plane }

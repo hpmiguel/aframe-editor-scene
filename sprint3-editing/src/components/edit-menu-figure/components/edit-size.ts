@@ -18,18 +18,18 @@ export function addControlEditSize(parentMenu: HTMLElement, figure: Figure) {
 
 function addContainerButton() {
     const containerButtons = createContainer({
-        'flex-direction': 'row',
-        height: '0.6'
+        'flex-direction': 'row'
     });
-    addButtonResize('increase', containerButtons);
     addButtonResize('decrease', containerButtons);
+    addButtonResize('increase', containerButtons);
     _parentMenu.appendChild(containerButtons);
 }
 
 function addButtonResize(operation: string, container: HTMLElement) {
     // Create Button
     const buttonControl = createButton({
-        value: operation === 'increase' ? '+' : '-'
+        value: operation === 'increase' ? '+' : '-',
+        'background-color': 'grey'
     });
 
     // Interaction

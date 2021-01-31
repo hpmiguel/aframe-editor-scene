@@ -9,7 +9,10 @@ export function addControlEditMaterial(parentMenu: HTMLElement, figure: Figure) 
     // Create Button
     const buttonControl = createButton({
         value: 'Change texture',
-        'font-size': '20px'
+        'font-size': '50px',
+        'background-color': 'grey',
+        width: 0.8,
+        margin: '0 0 0.05 0'
     });
 
     // Interaction
