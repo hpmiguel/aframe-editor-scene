@@ -1,7 +1,7 @@
-import {registerSelectableFigure} from '../behaviour-components/coneable-figure/cloneable-figure';
 import {SceneRef} from '../../services/scene-ref';
 import {Figure} from '../../models/figure';
-import {appendFigureOnElement} from '../../helpers/figure-helper';
+import {appendFigure} from '../../helpers/figure-helper';
+import {registerSelectableFigure} from '../behaviour-components/selectable-figure/selectable-figure';
 
 export class FiguresPalette {
 
@@ -24,7 +24,7 @@ export class FiguresPalette {
             // Insert palette figures
             this.figures.forEach((fig, i) => {
                 const figCoords =  `${(x + 2) - (i + 1)} 0 0`;
-                appendFigureOnElement(fig, figCoords, this.entityRef);
+                appendFigure(fig, figCoords, this.entityRef);
             });
         }, 0);
     }

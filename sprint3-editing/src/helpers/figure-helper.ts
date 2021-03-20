@@ -1,6 +1,6 @@
 import { Figure } from '../models/figure';
-import { selectableFigureAttr } from '../components/behaviour-components/coneable-figure/cloneable-figure';
 import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
+import { selectableFigureAttr } from '../components/behaviour-components/selectable-figure/selectable-figure';
 
 export function cloneProperties(node): any {
     const attributes = node.attributes;
@@ -47,10 +47,10 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     });
 
     // Setting interaction props and events
-    figEl.setAttribute('class', 'selectable');
     figEl.setAttribute(selectableFigureAttr, ''); // My custom behaviour
 
     // Superhands Props
+    // figEl.setAttribute('class', 'selectable');
     // setInteractionProperties(figEl);
     // setInteractionBehaviour(figEl);
 

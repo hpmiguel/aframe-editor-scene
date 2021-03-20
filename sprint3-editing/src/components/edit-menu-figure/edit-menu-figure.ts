@@ -35,6 +35,7 @@ export class EditMenuFigure {
             position: '0 2 0'
         });
         this.figure.htmlRef.appendChild(this.entityRef);
+        this.entityRef.setAttribute('visible', 'false');
     }
 
 }

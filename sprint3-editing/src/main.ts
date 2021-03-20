@@ -2,16 +2,23 @@ import 'aframe';
 import 'super-hands';
 import 'aframe-gui';
 
-import { FiguresPalette } from "./components/figures-palette/figures-palette";
+// import { FiguresPalette } from "./components/figures-palette/figures-palette";
 import { Box } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import {appendFigure} from './helpers/figure-helper';
 import { texturesPath } from "./utils/constants";
 import {LightScene} from "./components/light-scene/light-scene";
+import {registerSelectableFigure} from './components/behaviour-components/selectable-figure/selectable-figure';
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
+
+    // const customRightClick = new Event('rightClick');
+    // document.addEventListener('contextmenu', event => {
+    //     event.preventDefault();
+    //     document.dispatchEvent(customRightClick)
+    // });
 
     const sceneEl = SceneRef.getInstance().getSceneEl();
 
@@ -22,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         shadowCameraVisible: false,
         position: "1 2 1.8"
     });
+
+    registerSelectableFigure();
 
     // Test figure to develop properties controls menu
     const box = new Box({
