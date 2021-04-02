@@ -11,12 +11,12 @@ export class FiguresPalette {
 
     private figures: Array<Figure>;
 
-    constructor (attrs, initialFigures, idDest) {
+    constructor (attrs, initialFigures) {
         this.figures = initialFigures || new Array<Figure>();
         this.appendPalette(attrs);
         setTimeout(() => {
             // registering component to convert into selectable figures (Custom behaviour)
-            registerSelectableFigure(idDest);
+            registerSelectableFigure();
 
             // Getting palette coords
             const {x, y, z} = this.entityRef.getAttribute('position') as any;

@@ -100,7 +100,7 @@ class Plane extends Figure {
     width: number;
     rotation: string;
 
-    constructor(plane: {primitive: string, color: string, height: number, width: number, rotation: string}) {
+    constructor(plane: {color: string, height: number, width: number, rotation: string}) {
         const {color, height, width, rotation} = plane;
         const primitive: string = 'a-plane';
         super({primitive, color});

@@ -19,11 +19,11 @@
         <a-entity id="camera-mouse" camera wasd-controls
                   cursor="rayOrigin:mouse"
                   raycaster="object: [gui-interactable]"
+                  super-hands="colliderEvent: raycaster-intersection;
+                               colliderEventProperty: els;
+                               colliderEndEvent:raycaster-intersection-cleared;
+                               colliderEndEventProperty: clearedEls;"
         ></a-entity>
-<!--        super-hands="colliderEvent: raycaster-intersection;-->
-<!--        colliderEventProperty: els;-->
-<!--        colliderEndEvent:raycaster-intersection-cleared;-->
-<!--        colliderEndEventProperty: clearedEls;"-->
 
 <!--        <a-camera look-controls wasd-controls position="0 0 0">-->
 <!--          <a-gui-cursor id="cursor"-->

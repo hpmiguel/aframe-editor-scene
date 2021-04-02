@@ -1,15 +1,18 @@
 import { registerComponent } from 'aframe';
+import { cloneProperties } from '../../../helpers/figure-helper';
 
 export const selectableFigureAttr = 'selectable-check';
 
-export function registerSelectableFigure(idDest?: string) {
-    const tableDest = document.querySelector(`#${idDest}`);
+export function registerSelectableFigure() {
+    // const tableDest = document.querySelector(`#${idDest}`);
     const selectableFigureComponent = {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
+            const originalAttrs: any = cloneProperties(figSelected);
             let lastClick = null;
 
+            // Clone figure
             // this.el.addEventListener('click', function (evt) {
             //     // Detect double click manually implementation
             //     if(evt instanceof MouseEvent) {
@@ -26,10 +29,21 @@ export function registerSelectableFigure(idDest?: string) {
             //     }
             // });
 
-            this.el.addEventListener('click', function (evt) {
-                const menuRef = figSelected.childNodes[0];
-                const visibleState = Boolean(menuRef.getAttribute('visible'));
-                !visibleState && figSelected.childNodes[0].setAttribute('visible', 'true');
+            // Show menu edit figure
+            // this.el.addEventListener('click', function (evt) {
+            //     const menuRef = figSelected.childNodes[0];
+            //     const visibleState = Boolean(menuRef.getAttribute('visible'));
+            //     // !visibleState && figSelected.childNodes[0].setAttribute('visible', 'true');
+            //     figSelected.childNodes[0].setAttribute('visible', !visibleState);
+            // });
+
+            // Hover styles
+            this.el.addEventListener('mouseover', function (evt) {
+                figSelected.setAttribute('color', 'cyan');
+            });
+
+            this.el.addEventListener('mouseleave', function (evt) {
+                figSelected.setAttribute('color', originalAttrs.color);
             });
         }
     };

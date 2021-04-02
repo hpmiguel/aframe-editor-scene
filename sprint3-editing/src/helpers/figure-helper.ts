@@ -50,9 +50,8 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     figEl.setAttribute(selectableFigureAttr, ''); // My custom behaviour
 
     // Superhands Props
-    // figEl.setAttribute('class', 'selectable');
-    // setInteractionProperties(figEl);
-    // setInteractionBehaviour(figEl);
+    setInteractionProperties(figEl);
+    setInteractionBehaviour(figEl);
 
     parent.appendChild(figEl);
 
