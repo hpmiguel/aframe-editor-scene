@@ -1,58 +1,69 @@
 import {propsInLine} from "../helpers/figure-helper";
 
 class Figure {
-    htmlRef: HTMLElement;
-    primitive: string;
-    color: string;
-    material: string;
-    shadow: string;
+    id?: string;
+    htmlRef?: HTMLElement;
+    primitive?: string;
+    color?: string = 'white';
+    material?: any;
+    shadow?: boolean = false;
+    opacity?: number = 1;
+    wireFrame?: boolean = false;
 
-    constructor(fig: {primitive: string, color: string, material?: any, shadow?: boolean}) {
-        const {primitive, color, material, shadow} = fig;
+    constructor(fig: Figure) {
+        const {primitive, id, color, material, shadow, opacity, wireFrame} = fig;
         this.primitive = primitive;
-        this.color = color;
-        this.material = material && propsInLine(material);
-        this.shadow = `receive: ${shadow}`;
+        if (id) { this.id = id; }
+        if (color) { this.color = color; }
+        if (material) { this.material = propsInLine(material); }
+        if (shadow) { this.shadow = shadow; }
+        if (opacity) { this.opacity = opacity; }
+        if (wireFrame) { this.opacity = opacity; }
     }
 
-    setColor(color: string) {
+    setColor?(color: string) {
+        this.color = color;
         this.htmlRef.setAttribute('color', color);
     }
 
-    setMaterial(material: any) {
+    setMaterial?(material: any) {
+        this.material = material;
         const materialAttr: string = material && propsInLine(material);
         this.htmlRef.setAttribute('material', materialAttr);
     }
 
-    setOpacity(percent: string) {
-       this.htmlRef.setAttribute('opacity', percent);
+    setOpacity?(percent: number) {
+        this.opacity = percent
+        this.htmlRef.setAttribute('opacity', percent.toString());
     }
 
-    resize(scaleFactor: number) {
+    resize?(scaleFactor: number) {
         (this.htmlRef as any).object3D.scale.multiplyScalar(scaleFactor);
     }
 
-    toggleWireframe() {
-        const wireframeStatus = this.htmlRef.getAttribute('wireframe') === "true";
-        this.htmlRef.setAttribute('wireframe', String(!wireframeStatus));
+    setWireframe?(wireFrame: boolean) {
+        // const wireframeStatus = this.htmlRef.getAttribute('wireframe') === "true";
+        this.wireFrame = wireFrame;
+        this.htmlRef.setAttribute('wireframe', String(wireFrame));
     }
 
-    toggleShadow() {
-        const shadowStatus = this.htmlRef.getAttribute('shadow')['receive'];
-        this.htmlRef.setAttribute('shadow', `receive: ${!shadowStatus}`);
+    setShadow?(shadow: boolean) {
+        // const shadowStatus = this.htmlRef.getAttribute('shadow')['receive'];
+        this.shadow = shadow;
+        this.htmlRef.setAttribute('shadow', `receive: ${shadow}`);
     }
+
 }
 
 class Cone extends Figure {
     'radius-bottom': number;
     height: number;
 
-    constructor(cone: {color: string, 'radius-bottom': number, height: number, material?: any, shadow?: boolean}) {
-        const {color, height, material, shadow} = cone;
-        const primitive: string = 'a-cone';
-        super({primitive, color, material, shadow});
+    constructor(cone: Cone) {
+        cone.primitive = 'a-cone';
+        super(cone);
         this['radius-bottom'] = cone['radius-bottom'];
-        this.height = height;
+        this.height = cone.height;
     }
 }
 
@@ -60,10 +71,10 @@ class Cylinder extends Figure {
     radius: number;
     height: number;
 
-    constructor(cyl: {color: string, height: number, radius: number, material?: any, shadow?: boolean}) {
-        const {color, height, radius, material, shadow} = cyl;
-        const primitive: string = 'a-cylinder';
-        super({primitive, color, material, shadow});
+    constructor(cyl: Cylinder) {
+        const {height, radius} = cyl;
+        cyl.primitive = 'a-cylinder';
+        super(cyl);
         this.height = height;
         this.radius = radius;
     }
@@ -72,11 +83,10 @@ class Cylinder extends Figure {
 class Sphere extends Figure {
     radius: number;
 
-    constructor(sphere: {color: string, radius: number, material?: any, shadow?: boolean}) {
-        const {color, radius, material, shadow} = sphere;
-        const primitive: string = 'a-sphere';
-        super({primitive, color, material, shadow});
-        this.radius = radius;
+    constructor(sphere: Sphere) {
+        sphere.primitive = 'a-sphere';
+        super(sphere);
+        this.radius = sphere.radius;
     }
 }
 
@@ -85,10 +95,10 @@ class Box extends Figure {
     width: number;
     depth: number;
 
-    constructor(box: {color: string, height: number, width: number, depth: number, material?: any, shadow?: boolean}) {
-        const {color, height, width, depth, material, shadow} = box;
-        const primitive: string = 'a-box';
-        super({primitive, color, material, shadow});
+    constructor(box: Box) {
+        const { height, width, depth } = box;
+        box.primitive = 'a-box';
+        super(box);
         this.height = height;
         this.width = width;
         this.depth = depth;
@@ -100,10 +110,10 @@ class Plane extends Figure {
     width: number;
     rotation: string;
 
-    constructor(plane: {color: string, height: number, width: number, rotation: string}) {
-        const {color, height, width, rotation} = plane;
-        const primitive: string = 'a-plane';
-        super({primitive, color});
+    constructor(plane: Plane) {
+        const { height, width, rotation } = plane;
+        plane.primitive = 'a-plane';
+        super(plane);
         this.height = height;
         this.width = width;
         this.rotation = rotation;

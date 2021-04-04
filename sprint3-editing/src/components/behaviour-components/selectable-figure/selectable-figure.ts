@@ -1,10 +1,10 @@
 import { registerComponent } from 'aframe';
-import { cloneProperties } from '../../../helpers/figure-helper';
+import {cloneProperties, duplicateFigure} from '../../../helpers/figure-helper';
 
 export const selectableFigureAttr = 'selectable-check';
 
 export function registerSelectableFigure() {
-    // const tableDest = document.querySelector(`#${idDest}`);
+    const tableDest = document.querySelector(`a-plane`);
     const selectableFigureComponent = {
         dependencies: ['raycaster'],
         init: function () {
@@ -14,6 +14,8 @@ export function registerSelectableFigure() {
 
             // Clone figure
             // this.el.addEventListener('click', function (evt) {
+            //     console.log('click!!!', evt)
+            //
             //     // Detect double click manually implementation
             //     if(evt instanceof MouseEvent) {
             //         if (!lastClick) {
@@ -22,7 +24,7 @@ export function registerSelectableFigure() {
             //             const thisClick = new Date().getTime();
             //             const isDblClick = thisClick - lastClick < 400;
             //             if (isDblClick) {
-            //                 _duplicateFigure(figSelected, tableDest);
+            //                 duplicateFigure(figSelected, tableDest);
             //             }
             //             lastClick = null;
             //         }
@@ -34,30 +36,21 @@ export function registerSelectableFigure() {
             //     const menuRef = figSelected.childNodes[0];
             //     const visibleState = Boolean(menuRef.getAttribute('visible'));
             //     // !visibleState && figSelected.childNodes[0].setAttribute('visible', 'true');
+            //     console.log('---------visibleState', visibleState)
+            //     console.log('---------child', figSelected.childNodes[0])
             //     figSelected.childNodes[0].setAttribute('visible', !visibleState);
             // });
 
             // Hover styles
-            this.el.addEventListener('mouseover', function (evt) {
-                figSelected.setAttribute('color', 'cyan');
-            });
-
-            this.el.addEventListener('mouseleave', function (evt) {
-                figSelected.setAttribute('color', originalAttrs.color);
-            });
+            // this.el.addEventListener('mouseover', function (evt) {
+            //     figSelected.setAttribute('color', 'cyan');
+            // });
+            //
+            // this.el.addEventListener('mouseleave', function (evt) {
+            //     const originalColor = originalAttrs.color === undefined ? originalAttrs.color : 'white';
+            //     figSelected.setAttribute('color', originalColor);
+            // });
         }
     };
     registerComponent(selectableFigureAttr, selectableFigureComponent);
-}
-
-function _duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
-    // Cloning figure
-    const clonedFigureEl = figEl.cloneNode() as HTMLElement;
-
-    // Setting destination position
-    clonedFigureEl.setAttribute('position', '0 0 0.5');
-    clonedFigureEl.setAttribute('rotation', '90 0 0'); // Because plane is already rotated
-
-    // Append to dest
-    parent.appendChild(clonedFigureEl);
 }

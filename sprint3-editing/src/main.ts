@@ -5,7 +5,7 @@ import 'aframe-gui';
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './helpers/figure-helper';
-import { texturesPath } from "./utils/constants";
+import { textures } from "./utils/constants";
 import { LightScene } from "./components/light-scene/light-scene";
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 
@@ -30,34 +30,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
         width: 2,
         rotation: "-90 0 0"
     });
-    appendFigure(table, '-0.8 0.1 1.8', sceneEl);
+    appendFigure(table, '-0.8 0 1.8', sceneEl);
 
     const initialFigures: Array<Figure> = [
         new Cone({
-            color: 'red',
             'radius-bottom': 0.3,
-            height: 1
-        }),
-        new Cylinder({
-            color: 'blue',
-            radius: 0.3,
-            height: 1
-        }),
-        new Sphere({
-            color: 'green',
-            radius: 0.3
-        }),
-        new Box({
-            color: 'white',
-            height: 0.5,
-            width: 0.5,
-            depth: 0.5,
+            height: 1,
             material: {
-                src: texturesPath + 'paper.jpg',
+                src: textures.GRASS,
                 roughness: 1
-            },
-            shadow: false
-        })
+            }
+        }),
+        // new Cylinder({
+        //     radius: 0.3,
+        //     height: 1,
+        //     material: {
+        //         src: textures.PAPER,
+        //         roughness: 1
+        //     }
+        // }),
+        // new Sphere({
+        //     radius: 0.3,
+        //     material: {
+        //         src: textures.WOODEN,
+        //         roughness: 1
+        //     }
+        // }),
+        // new Box({
+        //     height: 0.5,
+        //     width: 0.5,
+        //     depth: 0.5,
+        //     material: {
+        //         src: textures.WALLBRICK,
+        //         roughness: 1
+        //     }
+        // })
     ];
 
     // Render figures palette

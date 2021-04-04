@@ -1,8 +1,8 @@
 import {Figure} from "../../../models/figure";
 import {createButton} from "../../../helpers/gui-helper";
-import {texturesPath} from "../../../utils/constants";
+import {textures} from '../../../utils/constants';
 
-const textures = ['grass.jpg', 'paper.jpg', 'stone.jpg', 'wall-brick.jpg', 'wooden.jpg'];
+const texturesKeys = Object.keys(textures);
 let textureOffset = 0;
 
 export function addControlEditMaterial(parentMenu: HTMLElement, figure: Figure) {
@@ -20,10 +20,10 @@ export function addControlEditMaterial(parentMenu: HTMLElement, figure: Figure) 
     buttonControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {
-        textureOffset = (textureOffset + 1) > (textures.length - 1) ? 0 : textureOffset + 1;
-        const texture = textures[textureOffset];
+        textureOffset = (textureOffset + 1) > (texturesKeys.length - 1) ? 0 : textureOffset + 1;
+        const textureKey = texturesKeys[textureOffset];
         const material = {
-            src: texturesPath + texture,
+            src: textures[textureKey],
             roughness: 1
         };
         figure.setMaterial(material);

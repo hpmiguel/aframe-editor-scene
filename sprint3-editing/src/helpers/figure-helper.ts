@@ -12,6 +12,20 @@ export function cloneProperties(node): any {
     return originalAttrs;
 }
 
+export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
+    // Cloning figure
+    const clonedFigureEl = figEl.cloneNode() as HTMLElement;
+
+    console.log('---clonada!!', clonedFigureEl)
+
+    // Setting destination position
+    clonedFigureEl.setAttribute('position', '0 0 0.5');
+    clonedFigureEl.setAttribute('rotation', '90 0 0'); // Because plane is already rotated
+
+    // Append to dest
+    parent.appendChild(clonedFigureEl);
+}
+
 export function propsInLine(props: any): string {
     const propsKeys = Object.keys(props);
     let materialAttr: string = '';
@@ -27,6 +41,7 @@ function setInteractionProperties(figEl) {
     figEl.setAttribute('draggable', '');
 }
 
+// deprecated
 function setInteractionBehaviour(figEl) {
     figEl.setAttribute('event-set__hoveron', '_event: hover-start; material.opacity: 0.7; transparent: true');
     figEl.setAttribute('event-set__hoveroff', '_event: hover-end; material.opacity: 1; transparent: false');
@@ -50,8 +65,8 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     figEl.setAttribute(selectableFigureAttr, ''); // My custom behaviour
 
     // Superhands Props
-    setInteractionProperties(figEl);
-    setInteractionBehaviour(figEl);
+    // setInteractionProperties(figEl);
+    // setInteractionBehaviour(figEl);
 
     parent.appendChild(figEl);
 
