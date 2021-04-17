@@ -8,8 +8,8 @@ import 'aframe-gui';
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './helpers/figure-helper';
-import { textures } from "./utils/constants";
-import { LightScene } from "./components/light-scene/light-scene";
+import { textures } from './utils/constants';
+import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         color: 'purple',
         height: 1,
         width: 2,
-        rotation: "-90 0 0"
+        rotation: '-90 0 0'
     });
-    appendFigure(table, '-0.8 0 1.8', sceneEl);
+    appendFigure(table, '-0.8 0.01 1.8', sceneEl);
 
     const initialFigures: Array<Figure> = [
         new Cone({

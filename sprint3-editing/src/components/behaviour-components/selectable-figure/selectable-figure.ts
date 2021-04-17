@@ -1,5 +1,5 @@
 import { registerComponent } from 'aframe';
-import {cloneProperties, duplicateFigure} from '../../../helpers/figure-helper';
+// import {cloneProperties, duplicateFigure} from '../../../helpers/figure-helper';
 
 export const selectableFigureAttr = 'selectable-custom';
 
@@ -9,39 +9,33 @@ export function registerSelectableFigure() {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
-            const originalAttrs: any = cloneProperties(figSelected);
+            // const originalAttrs: any = cloneProperties(figSelected);
             let lastClick = null;
 
-            // Clone figure
-            // this.el.addEventListener('click', function (evt) {
-            //     console.log('click!!!', evt)
-            //
-            //     // Detect double click manually implementation
-            //     if(evt instanceof MouseEvent) {
-            //         if (!lastClick) {
-            //             lastClick = new Date().getTime();
-            //         } else {
-            //             const thisClick = new Date().getTime();
-            //             const isDblClick = thisClick - lastClick < 400;
-            //             if (isDblClick) {
-            //                 duplicateFigure(figSelected, tableDest);
-            //             }
-            //             lastClick = null;
-            //         }
-            //     }
-            // });
+            // Double click
+            this.el.addEventListener('click', function (evt) {
+                evt.stopPropagation();
 
-            // Show menu edit figure
-            // this.el.addEventListener('click', function (evt) {
-            //     const menuRef = figSelected.childNodes[0];
-            //     const visibleState = Boolean(menuRef.getAttribute('visible'));
-            //     // !visibleState && figSelected.childNodes[0].setAttribute('visible', 'true');
-            //     console.log('---------visibleState', visibleState)
-            //     console.log('---------child', figSelected.childNodes[0])
-            //     figSelected.childNodes[0].setAttribute('visible', !visibleState);
-            // });
+                // Detect double click manually implementation
+                if(evt instanceof MouseEvent) {
+                    if (!lastClick) {
+                        lastClick = new Date().getTime();
+                    } else {
+                        const thisClick = new Date().getTime();
+                        const isDblClick = thisClick - lastClick < 400;
+                        if (isDblClick) {
+                            // duplicateFigure(figSelected, tableDest);
 
-            // Hover styles
+                            // hide figure menu
+                            const menuRef = figSelected.childNodes[0];
+                            menuRef.setAttribute('visible', 'true');
+                        }
+                        lastClick = null;
+                    }
+                }
+            });
+
+            // Hover
             // this.el.addEventListener('mouseover', function (evt) {
             //     figSelected.setAttribute('color', 'cyan');
             // });

@@ -39,7 +39,6 @@ function setInteractionProperties(figEl) {
     figEl.setAttribute('draggable', '');
 }
 
-// deprecated
 function setInteractionBehaviour(figEl) {
     figEl.setAttribute('event-set__hoveron', '_event: hover-start; material.opacity: 0.8; transparent: true');
     figEl.setAttribute('event-set__hoveroff', '_event: hover-end; material.opacity: 1; transparent: false');
