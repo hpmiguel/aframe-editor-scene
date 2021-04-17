@@ -1,4 +1,7 @@
+// Global imports
 import 'aframe';
+import 'aframe-event-set-component';
+import 'aframe-environment-component';
 import 'super-hands';
 import 'aframe-gui';
 
@@ -41,30 +44,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 roughness: 1
             }
         }),
-        // new Cylinder({
-        //     radius: 0.3,
-        //     height: 1,
-        //     material: {
-        //         src: textures.PAPER,
-        //         roughness: 1
-        //     }
-        // }),
-        // new Sphere({
-        //     radius: 0.3,
-        //     material: {
-        //         src: textures.WOODEN,
-        //         roughness: 1
-        //     }
-        // }),
-        // new Box({
-        //     height: 0.5,
-        //     width: 0.5,
-        //     depth: 0.5,
-        //     material: {
-        //         src: textures.WALLBRICK,
-        //         roughness: 1
-        //     }
-        // })
+        new Cylinder({
+            radius: 0.3,
+            height: 1,
+            material: {
+                src: textures.PAPER,
+                roughness: 1
+            }
+        }),
+        new Sphere({
+            radius: 0.3,
+            material: {
+                src: textures.WOODEN,
+                roughness: 1
+            }
+        }),
+        new Box({
+            height: 0.5,
+            width: 0.5,
+            depth: 0.5,
+            material: {
+                src: textures.WALLBRICK,
+                roughness: 1
+            }
+        })
     ];
 
     // Render figures palette

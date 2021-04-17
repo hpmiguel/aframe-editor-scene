@@ -1,7 +1,7 @@
 import { registerComponent } from 'aframe';
 import {cloneProperties, duplicateFigure} from '../../../helpers/figure-helper';
 
-export const selectableFigureAttr = 'selectable-check';
+export const selectableFigureAttr = 'selectable-custom';
 
 export function registerSelectableFigure() {
     const tableDest = document.querySelector(`a-plane`);

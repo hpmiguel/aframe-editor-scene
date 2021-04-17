@@ -3,7 +3,7 @@
 class SceneRef {
     private static instance: SceneRef;
 
-    private sceneEl = document.querySelector('a-scene');
+    private sceneEl: HTMLElement = document.querySelector('a-scene');
 
     private constructor() {}
 
@@ -14,7 +14,7 @@ class SceneRef {
         return SceneRef.instance;
     }
 
-    public getSceneEl() {
+    public getSceneEl(): HTMLElement {
         return this.sceneEl;
     }
 }

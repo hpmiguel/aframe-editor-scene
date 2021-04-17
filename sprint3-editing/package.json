@@ -9,6 +9,8 @@
     "test:e2e": "cypress open"
   },
   "dependencies": {
+    "@types/aframe": "^1.0.3",
+    "@types/lodash": "^4.14.168",
     "aframe": "^1.2.0",
     "aframe-environment-component": "^1.2.0",
     "aframe-event-set-component": "^5.0.0",
