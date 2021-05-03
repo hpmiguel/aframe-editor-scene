@@ -20,6 +20,21 @@ object-assign
 
 /*! (C) WebReflection Mit Style License */
 
+/*! no static exports found */
+
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+
+/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
 /**
  * @license
  * cardboard-vr-display
@@ -159,5 +174,3 @@ object-assign
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-//!\ DECLARE ALIAS AFTER assign prototype !
