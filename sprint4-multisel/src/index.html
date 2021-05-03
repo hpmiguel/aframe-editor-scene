@@ -8,10 +8,6 @@
   </head>
   <body>
     <a-scene>
-      <a-assets>
-        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous">
-        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
-      </a-assets>
 
       <!-- Camera. -->
       <a-entity id="rig" position="-1 0.5 4.5">
@@ -34,11 +30,7 @@
 
       </a-entity>
 
-      <!-- Background sky. -->
-      <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
-
-      <!-- BackGround floor. -->
-      <a-circle src="#groundTexture" rotation="-90 0 0" radius="32"></a-circle>
+      <a-entity environment="preset: yavapai; groundColor: #445; grid: cross"></a-entity>
 
     </a-scene>
   </body>
