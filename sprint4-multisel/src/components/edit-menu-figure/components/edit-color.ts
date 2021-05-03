@@ -1,5 +1,6 @@
 import {createButton, createContainer, createLabel, rgbToHex} from "../../../helpers/gui-helper";
 import {Figure} from "../../../models/figure";
+import {cloneDeep} from 'lodash';
 
 const _RGBFigure: { red: number; green: number; blue: number; } = { red: 0, green: 0, blue: 0 };
 let _figure: Figure;
@@ -29,6 +30,7 @@ function addContainerButton(rgbComponent: string) {
 }
 
 function addButtonColor(rgbComponent: string, operation: string, container: HTMLElement) {
+
     // Create Button
     const buttonControl = createButton({
         value: operation === 'increase' ? '+' : '-',
@@ -36,8 +38,10 @@ function addButtonColor(rgbComponent: string, operation: string, container: HTML
     });
 
     // Interaction
-    const customAction = operation + rgbComponent;
+    const customAction = operation + rgbComponent  + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
+
+    const figureAction = cloneDeep(_figure); // backup for triggered
 
     window[customAction] = function (event) {
         const interval = 25;
@@ -51,7 +55,7 @@ function addButtonColor(rgbComponent: string, operation: string, container: HTML
         const { red, green, blue } =  _RGBFigure;
         const colorHex = rgbToHex(red, green, blue);
 
-        _figure.setColor(colorHex);
+        figureAction.setColor(colorHex);
     }
 
     container.appendChild(buttonControl);

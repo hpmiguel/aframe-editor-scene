@@ -33,7 +33,7 @@ export class EditMenuFigure {
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '1.3',
-            height: '3.1',
+            height: '3.2',
             position: '0 2 0'
         });
         this.figure.htmlRef.appendChild(this.entityRef);

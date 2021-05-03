@@ -24,6 +24,11 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     parent.appendChild(clonedFigureEl);
 }
 
+export function showFigureMenu(figEl: HTMLElement) {
+    const menuRef: HTMLElement = figEl.childNodes[0] as HTMLElement;
+    menuRef.setAttribute('visible', 'true');
+}
+
 export function propsInLine(props: any): string {
     const propsKeys = Object.keys(props);
     let materialAttr: string = '';

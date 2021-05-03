@@ -1,5 +1,5 @@
 import { registerComponent } from 'aframe';
-// import {cloneProperties, duplicateFigure} from '../../../helpers/figure-helper';
+import { showFigureMenu } from '../../../helpers/figure-helper';
 
 export const selectableFigureAttr = 'selectable-custom';
 
@@ -9,6 +9,7 @@ export function registerSelectableFigure() {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
+            // console.log('-------------figSelected', figSelected)
             // const originalAttrs: any = cloneProperties(figSelected);
             let lastClick = null;
 
@@ -25,10 +26,7 @@ export function registerSelectableFigure() {
                         const isDblClick = thisClick - lastClick < 400;
                         if (isDblClick) {
                             // duplicateFigure(figSelected, tableDest);
-
-                            // hide figure menu
-                            const menuRef = figSelected.childNodes[0];
-                            menuRef.setAttribute('visible', 'true');
+                            showFigureMenu(figSelected);
                         }
                         lastClick = null;
                     }

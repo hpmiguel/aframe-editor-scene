@@ -12,7 +12,7 @@ export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figure) {
     });
 
     // Interaction
-    const customAction = 'slideOpacity';
+    const customAction = 'slideOpacity' + new Date().getTime();
     opacityControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event, percent) {

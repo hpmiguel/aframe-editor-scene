@@ -8,7 +8,7 @@ export function addControlEditShadow(parentMenu: HTMLElement, figure: Figure) {
     });
 
     // Interaction
-    const customAction = 'setShadow';
+    const customAction = 'setShadow' + new Date().getTime();
     shadowControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {

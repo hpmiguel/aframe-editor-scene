@@ -8,7 +8,7 @@ export function addControlEditWireframe(parentMenu: HTMLElement, figure: Figure)
     });
 
     // Interaction
-    const customAction = 'setWireframe';
+    const customAction = 'setWireframe' + new Date().getTime();
     wireframeControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {

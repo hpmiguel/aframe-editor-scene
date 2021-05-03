@@ -11,7 +11,7 @@ export function addControlCloseMenu(parentMenu: HTMLElement, figure: Figure) {
     // 'margin-left': '1'
 
     // Interaction
-    const customAction = 'closeMenu';
+    const customAction = 'closeMenu' + new Date().getTime();
     closeControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {

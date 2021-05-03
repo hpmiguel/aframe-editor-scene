@@ -16,7 +16,7 @@ export function addControlEditMaterial(parentMenu: HTMLElement, figure: Figure) 
     });
 
     // Interaction
-    const customAction = 'changeTexture';
+    const customAction = 'changeTexture' + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {

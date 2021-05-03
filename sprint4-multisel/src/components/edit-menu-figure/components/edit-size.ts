@@ -1,5 +1,6 @@
 import {createButton, createContainer, createLabel} from "../../../helpers/gui-helper";
 import {Figure} from "../../../models/figure";
+import {cloneDeep} from "lodash";
 
 let _figure: Figure;
 let _parentMenu: HTMLElement;
@@ -33,13 +34,15 @@ function addButtonResize(operation: string, container: HTMLElement) {
     });
 
     // Interaction
-    const customAction = operation + 'size';
+    const customAction = operation + 'size' + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
+
+    const figureAction = cloneDeep(_figure); // backup for triggered
 
     window[customAction] = function (event) {
         const factor = 0.2;
         const op = operation === 'increase' ? (1+factor) : (1-factor);
-        _figure.resize(op);
+        figureAction.resize(op);
     }
 
     container.appendChild(buttonControl);
