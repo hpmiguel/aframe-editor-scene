@@ -29,6 +29,25 @@ export function showFigureMenu(figEl: HTMLElement) {
     menuRef.setAttribute('visible', 'true');
 }
 
+let _selectedFigures: Array<HTMLElement> = new Array<HTMLElement>();
+
+export function markFigureAsSelected(figEl: HTMLElement) {
+    const alreadyMarked = _selectedFigures.find(sel => sel.innerHTML === figEl.innerHTML);
+    if (!alreadyMarked) {
+        _selectedFigures.push(figEl);
+        figEl.setAttribute('color', 'cyan');
+    } else {
+        _selectedFigures = _selectedFigures.filter(sel => sel.innerHTML !== figEl.innerHTML)
+        figEl.setAttribute('color', 'white');
+    }
+}
+
+export function opToAll(op: string) {
+    if (op === 'scale') {
+        _selectedFigures.forEach(fig => (fig as any).object3D.scale.multiplyScalar(1.5))
+    }
+}
+
 export function propsInLine(props: any): string {
     const propsKeys = Object.keys(props);
     let materialAttr: string = '';

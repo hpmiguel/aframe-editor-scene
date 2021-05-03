@@ -5,9 +5,11 @@ import 'aframe-environment-component';
 import 'super-hands';
 import 'aframe-gui';
 
+import $ from "jquery";
+
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
-import { appendFigure } from './helpers/figure-helper';
+import {appendFigure, opToAll} from './helpers/figure-helper';
 import { textures } from './utils/constants';
 import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
@@ -78,6 +80,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
         initialFigures
     );
+
+    // TODO Temporaly event to test
+    $(window).keypress(function(event) {
+        if(event.keyCode == 32){
+            opToAll('scale')
+        }
+    });
 
 });
 
