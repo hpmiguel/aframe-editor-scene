@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>aframe-vr-editor-scene</title>
+    <meta name="description" content="aframe-vr-editor-scene">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous">
+        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
+      </a-assets>
+
+      <!-- Camera. -->
+      <a-entity id="rig" position="-1 0.5 4.5">
+        <!-- Mouse camera-->
+        <a-entity id="camera-mouse" camera wasd-controls
+                  cursor="rayOrigin: mouse"
+                  raycaster="object: .selectable-superhands [gui-interactable]"
+                  super-hands="colliderEvent: raycaster-intersection;
+                              colliderEventProperty: els;
+                              colliderEndEvent: raycaster-intersection-cleared;
+                              colliderEndEventProperty: clearedEls;"
+        ></a-entity>
+
+<!--        <a-camera look-controls wasd-controls position="0 0 0">-->
+<!--          <a-gui-cursor id="cursor"-->
+<!--                        raycaster="objects: [gui-interactable]"-->
+<!--                        fuse="false"-->
+<!--          ></a-gui-cursor>-->
+<!--        </a-camera>-->
+
+      </a-entity>
+
+      <!-- Background sky. -->
+      <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
+
+      <!-- BackGround floor. -->
+      <a-circle src="#groundTexture" rotation="-90 0 0" radius="32"></a-circle>
+
+    </a-scene>
+  </body>
+</html>
