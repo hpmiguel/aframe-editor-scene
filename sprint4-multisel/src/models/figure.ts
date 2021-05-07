@@ -18,7 +18,7 @@ class Figure {
         if (material) { this.material = propsInLine(material); }
         if (shadow) { this.shadow = shadow; }
         if (opacity) { this.opacity = opacity; }
-        if (wireFrame) { this.opacity = opacity; }
+        if (wireFrame) { this.wireFrame = wireFrame; }
     }
 
     setColor?(color: string) {
@@ -29,6 +29,7 @@ class Figure {
     setMaterial?(material: any) {
         this.material = material;
         const materialAttr: string = material && propsInLine(material);
+        this.color !== 'white' && this.setColor('white');
         this.htmlRef.setAttribute('material', materialAttr);
     }
 

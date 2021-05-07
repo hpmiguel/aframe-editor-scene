@@ -44,18 +44,21 @@ function addButtonColor(rgbComponent: string, operation: string, container: HTML
     const figureAction = cloneDeep(_figure); // backup for triggered
 
     window[customAction] = function (event) {
-        const interval = 25;
-        const op = operation === 'increase' ? interval : -interval;
-        const newVal = _RGBFigure[rgbComponent] + op;
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            const interval = 25;
+            const op = operation === 'increase' ? interval : -interval;
+            const newVal = _RGBFigure[rgbComponent] + op;
 
-        if (newVal >= 0 && newVal <= 255) {
-            _RGBFigure[rgbComponent] = newVal;
+            if (newVal >= 0 && newVal <= 255) {
+                _RGBFigure[rgbComponent] = newVal;
+            }
+
+            const {red, green, blue} = _RGBFigure;
+            const colorHex = rgbToHex(red, green, blue);
+
+            figureAction.setColor(colorHex);
         }
-
-        const { red, green, blue } =  _RGBFigure;
-        const colorHex = rgbToHex(red, green, blue);
-
-        figureAction.setColor(colorHex);
     }
 
     container.appendChild(buttonControl);

@@ -4,7 +4,6 @@ import { showFigureMenu, markFigureAsSelected } from '../../../helpers/figure-he
 export const selectableFigureAttr = 'selectable-custom';
 
 export function registerSelectableFigure() {
-    const tableDest = document.querySelector(`a-plane`);
     const selectableFigureComponent = {
         dependencies: ['raycaster'],
         init: function () {
@@ -24,9 +23,8 @@ export function registerSelectableFigure() {
                         const thisClick = new Date().getTime();
                         const isDblClick = thisClick - lastClick < 400;
                         if (isDblClick) {
-                            // duplicateFigure(figSelected, tableDest);
-                            // showFigureMenu(figSelected);
-                            markFigureAsSelected(figSelected);
+                            showFigureMenu(figSelected);
+                            // markFigureAsSelected(figSelected);
                         }
                         lastClick = null;
                     }

@@ -12,8 +12,11 @@ export function addControlEditShadow(parentMenu: HTMLElement, figure: Figure) {
     shadowControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {
-        const shadowStatus = figure.htmlRef.getAttribute('shadow')['receive'];
-        figure.setShadow(!shadowStatus);
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            const shadowStatus = figure.htmlRef.getAttribute('shadow')['receive'];
+            figure.setShadow(!shadowStatus);
+        }
     }
 
     parentMenu.appendChild(shadowControl);

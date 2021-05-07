@@ -30,10 +30,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Render table to append cloned figures
     const table = new Plane({
-        color: 'purple',
         height: 1,
         width: 2,
-        rotation: '-90 0 0'
+        rotation: '-90 0 0',
+        material: {
+            src: textures.WOODEN,
+            roughness: 1
+        }
     });
     appendFigure(table, '-0.8 0.01 1.8', sceneEl);
 
@@ -41,34 +44,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         new Cone({
             'radius-bottom': 0.3,
             height: 1,
-            material: {
-                src: textures.GRASS,
-                roughness: 1
-            }
+            color: 'red'
         }),
         new Cylinder({
             radius: 0.3,
             height: 1,
-            material: {
-                src: textures.PAPER,
-                roughness: 1
-            }
+            color: 'blue'
         }),
         new Sphere({
             radius: 0.3,
-            material: {
-                src: textures.WOODEN,
-                roughness: 1
-            }
+            color: 'yellow'
         }),
         new Box({
             height: 0.5,
             width: 0.5,
             depth: 0.5,
-            material: {
-                src: textures.WALLBRICK,
-                roughness: 1
-            }
+            color: 'green'
         })
     ];
 

@@ -9,6 +9,7 @@ import {addControlEditWireframe} from "./components/edit-wireframe";
 import {addControlEditMaterial} from "./components/edit-material";
 import {addControlEditShadow} from './components/edit-shadow';
 import {addControlCloseMenu} from "./components/close-menu";
+import {addControlCloneFigure} from "./components/clone-figure";
 
 export class EditMenuFigure {
 
@@ -28,12 +29,13 @@ export class EditMenuFigure {
         addControlEditWireframe(this.entityRef, fig);
         addControlEditMaterial(this.entityRef, fig);
         addControlEditShadow(this.entityRef, fig);
+        addControlCloneFigure(this.entityRef, fig);
     }
 
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '1.3',
-            height: '3.2',
+            height: '3.4',
             position: '0 2 0'
         });
         this.figure.htmlRef.appendChild(this.entityRef);

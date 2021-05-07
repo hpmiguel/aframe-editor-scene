@@ -40,9 +40,12 @@ function addButtonResize(operation: string, container: HTMLElement) {
     const figureAction = cloneDeep(_figure); // backup for triggered
 
     window[customAction] = function (event) {
-        const factor = 0.2;
-        const op = operation === 'increase' ? (1+factor) : (1-factor);
-        figureAction.resize(op);
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            const factor = 0.2;
+            const op = operation === 'increase' ? (1 + factor) : (1 - factor);
+            figureAction.resize(op);
+        }
     }
 
     container.appendChild(buttonControl);

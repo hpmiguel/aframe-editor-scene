@@ -16,7 +16,10 @@ export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figure) {
     opacityControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event, percent) {
-        figure.setOpacity(percent);
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            figure.setOpacity(percent);
+        }
     }
 
     parentMenu.appendChild(opacityControl);

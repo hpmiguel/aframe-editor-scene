@@ -12,8 +12,11 @@ export function addControlEditWireframe(parentMenu: HTMLElement, figure: Figure)
     wireframeControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {
-        const wireframeStatus = figure.htmlRef.getAttribute('wireframe') === "true";
-        figure.setWireframe(!wireframeStatus);
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            const wireframeStatus = figure.htmlRef.getAttribute('wireframe') === "true";
+            figure.setWireframe(!wireframeStatus);
+        }
     }
 
     parentMenu.appendChild(wireframeControl);

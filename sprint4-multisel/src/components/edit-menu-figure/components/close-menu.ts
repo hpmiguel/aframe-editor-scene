@@ -8,7 +8,6 @@ export function addControlCloseMenu(parentMenu: HTMLElement, figure: Figure) {
         margin: '0 0 0.05 0',
         'background-color': '#e07979'
     });
-    // 'margin-left': '1'
 
     // Interaction
     const customAction = 'closeMenu' + new Date().getTime();
@@ -16,8 +15,10 @@ export function addControlCloseMenu(parentMenu: HTMLElement, figure: Figure) {
 
     window[customAction] = function (event) {
         event.stopPropagation();
-        const menuRef = figure.htmlRef.childNodes[0] as HTMLElement;
-        menuRef.setAttribute('visible', 'false');
+        if (event instanceof CustomEvent) {
+            const menuRef = figure.htmlRef.childNodes[0] as HTMLElement;
+            menuRef.setAttribute('visible', 'false');
+        }
     }
 
     parentMenu.appendChild(closeControl);

@@ -20,13 +20,16 @@ export function addControlEditMaterial(parentMenu: HTMLElement, figure: Figure) 
     buttonControl.setAttribute('onclick', customAction);
 
     window[customAction] = function (event) {
-        textureOffset = (textureOffset + 1) > (texturesKeys.length - 1) ? 0 : textureOffset + 1;
-        const textureKey = texturesKeys[textureOffset];
-        const material = {
-            src: textures[textureKey],
-            roughness: 1
-        };
-        figure.setMaterial(material);
+        event.stopPropagation();
+        if (event instanceof CustomEvent) {
+            textureOffset = (textureOffset + 1) > (texturesKeys.length - 1) ? 0 : textureOffset + 1;
+            const textureKey = texturesKeys[textureOffset];
+            const material = {
+                src: textures[textureKey],
+                roughness: 1
+            };
+            figure.setMaterial(material);
+        }
     }
 
     parentMenu.appendChild(buttonControl);
