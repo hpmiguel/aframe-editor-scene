@@ -15,6 +15,7 @@ import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
 import { registerSelectableFigureScene } from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 import { loadScript } from "./utils/script-loading";
+import { defineImportEvent } from "./utils/export-scene";
 
 // TODO import like modules, test compile ammo module to wasm
 // import * as Ammo from './vendor/ammo.wasm' // compiled online
@@ -33,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         loadScript('ammo.wasm');
         loadScript('aframe-physics-system.min');
     }
+
+    defineImportEvent();
 
     const scene = SceneRef.getInstance().getSceneEl();
 

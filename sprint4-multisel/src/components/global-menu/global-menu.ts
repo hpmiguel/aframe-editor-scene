@@ -2,6 +2,7 @@ import {createContainer, createLabel} from "../../helpers/gui-helper";
 import {SceneRef} from "../../services/scene-ref";
 import {addControlEnableMultiselect} from "./components/multiselect";
 import {addControlEditSize} from "../edit-menu-figure/components/edit-size";
+import {addControlImportExport} from "./components/importExportScene";
 
 export class GlobalMenu {
 
@@ -15,6 +16,7 @@ export class GlobalMenu {
         this.entityRef.appendChild(title);
 
         // Controls
+        addControlImportExport(this.entityRef);
         addControlEnableMultiselect(this.entityRef);
 
         // Multiselect Ops

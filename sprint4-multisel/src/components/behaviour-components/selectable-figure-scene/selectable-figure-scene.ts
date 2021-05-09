@@ -42,14 +42,14 @@ export function registerSelectableFigureScene() {
             // Hover
             this.el.addEventListener('mouseover', function (evt) {
                 cachedProps = cloneProperties(figSelected);
-                const figOpacity = Number(cachedProps.opacity);
+                const figOpacity = Number(cachedProps?.opacity );
                 const opacityHover = figOpacity - opacityReduction;
                 figSelected.setAttribute('opacity', opacityHover.toString());
             });
 
             this.el.addEventListener('mouseleave', function (evt) {
                 const figOpacityNow = Number(figSelected.getAttribute('opacity'));
-                const figOpacityCached = Number(cachedProps.opacity);
+                const figOpacityCached = Number(cachedProps?.opacity);
                 const opacityChanged = figOpacityNow !== (figOpacityCached - opacityReduction);
                 const opacityRollback = opacityChanged ? figOpacityNow : figOpacityNow + opacityReduction;
                 figSelected.setAttribute('opacity', opacityRollback.toString());

@@ -66,7 +66,7 @@ export function createLabel(text: string, props?: any): HTMLElement {
 }
 
 export function createInputText(props?): HTMLElement {
-    let inputControl = document.createElement('a-gui-input');
+    const inputControl = document.createElement('a-gui-input');
 
     // Style properties
     const defaultProps = {
@@ -89,7 +89,7 @@ export function createInputText(props?): HTMLElement {
 }
 
 export function createButton(props?): HTMLElement {
-    let buttonControl = document.createElement('a-gui-button');
+    const buttonControl = document.createElement('a-gui-button');
 
     // Style properties
     const defaultProps = {
@@ -110,7 +110,7 @@ export function createButton(props?): HTMLElement {
 }
 
 export function createSlider(props?): HTMLElement {
-    let editControl = document.createElement('a-gui-slider');
+    const editControl = document.createElement('a-gui-slider');
 
     // Style properties
     const defaultProps = {
@@ -132,7 +132,7 @@ export function createSlider(props?): HTMLElement {
 }
 
 export function createToggle(props?): HTMLElement {
-    let editControl = document.createElement('a-gui-toggle');
+    const editControl = document.createElement('a-gui-toggle');
 
     // Style properties
     const defaultProps = {

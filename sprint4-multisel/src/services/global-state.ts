@@ -57,4 +57,9 @@ export class GlobalState {
         this.selectedFigures = this.selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML);
     }
 
+    public resetState() {
+        this.setSceneFigures([]);
+        this.setSelectedFigures([]);
+    }
+
 }

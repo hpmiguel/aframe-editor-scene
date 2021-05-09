@@ -16,7 +16,7 @@ export function cloneProperties(node): any {
     return originalAttrs;
 }
 
-function recoverPropsFigure(figEl: HTMLElement): Figure {
+export function recoverPropsFigure(figEl: HTMLElement): Figure {
     const tagElement = figEl.tagName.toLowerCase();
 
     let figureModel: Figure;
@@ -43,6 +43,8 @@ function recoverPropsFigure(figEl: HTMLElement): Figure {
        figureModel[prop] = figEl.getAttribute(prop);
     });
 
+    figureModel.htmlRef = figEl;
+
     return figureModel;
 }
 
@@ -65,7 +67,6 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
 
     // Recreate figure model from DOM
     const clonedFigure = recoverPropsFigure(clonedFigureEl);
-    clonedFigure.htmlRef = clonedFigureEl;
 
     // Add physics fall animation
     clonedFigure.setPhysics({
