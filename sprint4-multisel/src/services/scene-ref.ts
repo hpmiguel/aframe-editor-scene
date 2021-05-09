@@ -1,6 +1,6 @@
 // Singleton pattern
 
-class SceneRef {
+export class SceneRef {
     private static instance: SceneRef;
 
     private sceneEl: HTMLElement = document.querySelector('a-scene');
@@ -18,5 +18,3 @@ class SceneRef {
         return this.sceneEl;
     }
 }
-
-export { SceneRef }

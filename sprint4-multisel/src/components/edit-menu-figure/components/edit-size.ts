@@ -1,6 +1,7 @@
 import {createButton, createContainer, createLabel} from "../../../helpers/gui-helper";
 import {Figure} from "../../../models/figure";
 import {cloneDeep} from "lodash";
+import {GlobalState} from "../../../services/global-state";
 
 let _figure: Figure;
 let _parentMenu: HTMLElement;
@@ -46,7 +47,14 @@ function addButtonResize(operation: string, container: HTMLElement) {
         if (event instanceof CustomEvent) {
             const factor = 0.2;
             const op = operation === 'increase' ? (1 + factor) : (1 - factor);
-            figureAction.resize(op);
+
+            const selectedFigures: Array<Figure> = GlobalState.getInstance().getSelectedFigures();
+
+            if (figureAction) {
+                figureAction.resize(op);
+            } else if (!figureAction && selectedFigures.length) {
+                selectedFigures.forEach(fig => fig.resize(op));
+            }
         }
     }
 

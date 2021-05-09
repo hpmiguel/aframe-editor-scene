@@ -1,5 +1,6 @@
 import { registerComponent } from 'aframe';
 import { showFigureMenu, markFigureAsSelected } from '../../../helpers/figure-helper';
+import {GlobalState} from "../../../services/global-state";
 
 export const selectableFigureAttr = 'selectable-custom';
 
@@ -10,6 +11,7 @@ export function registerSelectableFigure() {
             const figSelected = this.el;
             // const originalAttrs: any = cloneProperties(figSelected);
             let lastClick = null;
+            const globalState = GlobalState.getInstance();
 
             // Double click
             this.el.addEventListener('click', function (evt) {
@@ -23,8 +25,12 @@ export function registerSelectableFigure() {
                         const thisClick = new Date().getTime();
                         const isDblClick = thisClick - lastClick < 400;
                         if (isDblClick) {
-                            showFigureMenu(figSelected);
-                            // markFigureAsSelected(figSelected);
+                            const multiselectEnable = globalState.getMultiselectEnable();
+                            if (multiselectEnable) {
+                                markFigureAsSelected(figSelected);
+                            } else {
+                                showFigureMenu(figSelected);
+                            }
                         }
                         lastClick = null;
                     }

@@ -1,6 +1,9 @@
 import { Figure } from '../models/figure';
 import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
 import { selectableFigureAttr } from '../components/behaviour-components/selectable-figure/selectable-figure';
+import {GlobalState} from "../services/global-state";
+
+const globalState = GlobalState.getInstance();
 
 export function cloneProperties(node): any {
     const attributes = node.attributes;
@@ -29,22 +32,19 @@ export function showFigureMenu(figEl: HTMLElement) {
     menuRef.setAttribute('visible', 'true');
 }
 
-let _selectedFigures: Array<HTMLElement> = new Array<HTMLElement>();
-
 export function markFigureAsSelected(figEl: HTMLElement) {
-    const alreadyMarked = _selectedFigures.find(sel => sel.innerHTML === figEl.innerHTML);
+    const figuresScene: Array<Figure> = globalState.getSceneFigures();
+    const selectedFigures: Array<Figure> = globalState.getSelectedFigures();
+
+    const alreadyMarked = Boolean(selectedFigures.find(sel => sel.htmlRef.innerHTML === figEl.innerHTML));
+    const figModel: Figure = figuresScene.find(fig => fig.htmlRef.innerHTML === figEl.innerHTML);
+
     if (!alreadyMarked) {
-        _selectedFigures.push(figEl);
+        selectedFigures.push(figModel);
         figEl.setAttribute('color', 'cyan');
     } else {
-        _selectedFigures = _selectedFigures.filter(sel => sel.innerHTML !== figEl.innerHTML)
-        figEl.setAttribute('color', 'white');
-    }
-}
-
-export function opToAll(op: string) {
-    if (op === 'scale') {
-        _selectedFigures.forEach(fig => (fig as any).object3D.scale.multiplyScalar(1.5))
+        globalState.setSelectedFigures(selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML));
+        figEl.setAttribute('color', figModel.color);
     }
 }
 
@@ -67,8 +67,8 @@ function setInteractionBehaviour(figEl) {
     figEl.setAttribute('event-set__hoveron', '_event: hover-start; material.opacity: 0.8; transparent: true');
     figEl.setAttribute('event-set__hoveroff', '_event: hover-end; material.opacity: 1; transparent: false');
     figEl.setAttribute('event-set__dragdrop', 'event: drag-drop');
-    figEl.setAttribute('event-set__dragon', '_event: dragover-start; material.wireframe: true');
-    figEl.setAttribute('event-set__dragoff', '_event: dragover-end; material.wireframe: false');
+    figEl.setAttribute('event-set__dragon', '_event: dragover-start;'); // material.wireframe: true
+    figEl.setAttribute('event-set__dragoff', '_event: dragover-end;'); // material.wireframe: false
 }
 
 export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement) {
@@ -79,7 +79,13 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     figEl.setAttribute('position', figCoords);
     const figProps = Object.keys(fig);
     figProps.forEach(key => {
-        if (key !== 'primitive') figEl.setAttribute(key, fig[key]);
+        if (key !== 'primitive') {
+            if (key === 'shadow') {
+                figEl.setAttribute('shadow', `receive: ${fig[key]}`)
+            } else {
+                figEl.setAttribute(key, fig[key]);
+            }
+        }
     });
 
     // Setting interaction props and events

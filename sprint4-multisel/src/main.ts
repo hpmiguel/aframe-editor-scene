@@ -9,16 +9,19 @@ import $ from "jquery";
 
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
-import {appendFigure, opToAll} from './helpers/figure-helper';
+import { appendFigure } from './helpers/figure-helper';
 import { textures } from './utils/constants';
 import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
+import { GlobalMenu } from "./components/global-menu/global-menu";
+import {GlobalState} from "./services/global-state";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
 
     const sceneEl = SceneRef.getInstance().getSceneEl();
+    const globalState = GlobalState.getInstance();
 
     new LightScene({
         type: 'directional',
@@ -72,12 +75,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         initialFigures
     );
 
-    // TODO Temporaly event to test
-    $(window).keypress(function(event) {
-        if(event.keyCode == 32){
-            opToAll('scale')
-        }
-    });
+    // Caching global figure models
+    globalState.setSceneFigures(initialFigures);
+
+    // Global Menu
+    new GlobalMenu();
 
 });
 
