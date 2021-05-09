@@ -12,7 +12,7 @@
       <!-- Camera. -->
       <a-entity id="rig" position="-1 0.5 4.5">
         <!-- Mouse camera-->
-        <a-entity id="camera-mouse" camera wasd-controls
+        <a-entity id="camera-mouse" camera look-controls wasd-controls
                   cursor="rayOrigin: mouse"
                   raycaster="object: .selectable-superhands [gui-interactable]"
                   super-hands="colliderEvent: raycaster-intersection;
@@ -21,6 +21,7 @@
                               colliderEndEventProperty: clearedEls;"
         ></a-entity>
 
+            <!-- Gazed Camera -->
 <!--        <a-camera look-controls wasd-controls position="0 0 0">-->
 <!--          <a-gui-cursor id="cursor"-->
 <!--                        raycaster="objects: [gui-interactable]"-->

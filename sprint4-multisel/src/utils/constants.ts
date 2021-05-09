@@ -1,4 +1,6 @@
-const texturesPath = '/assets/images/textures/';
+export const fontsPath = 'assets/fonts';
+
+const texturesPath = 'assets/images/textures/';
 const imgExt = '.jpg';
 
 export const textures = {

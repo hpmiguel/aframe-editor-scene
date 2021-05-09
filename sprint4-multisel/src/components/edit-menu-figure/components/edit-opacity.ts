@@ -3,12 +3,14 @@ import {Figure} from "../../../models/figure";
 
 export function addControlEditOpacity(parentMenu: HTMLElement, figure: Figure) {
     // Label
-    const label = createLabel('Opacity');
+    const label = createLabel('Opacity', {
+        'margin': '-0.05 0 0.15 0'
+    });
     parentMenu.appendChild(label);
 
     // Create Slider
     const opacityControl = createSlider({
-        percent: '0.5'
+        percent: '0.3'
     });
 
     // Interaction

@@ -35,8 +35,9 @@ export class EditMenuFigure {
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '1.3',
-            height: '3.4',
-            position: '0 2 0'
+            height: '3.5',
+            position: '0 2.3 0',
+            'panel-color': '#93b2e8'
         });
         this.figure.htmlRef.appendChild(this.entityRef);
         this.entityRef.setAttribute('visible', 'false');

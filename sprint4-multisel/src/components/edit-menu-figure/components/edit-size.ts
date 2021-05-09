@@ -19,7 +19,10 @@ export function addControlEditSize(parentMenu: HTMLElement, figure: Figure) {
 
 function addContainerButton() {
     const containerButtons = createContainer({
-        'flex-direction': 'row'
+        'flex-direction': 'row',
+        margin: '0 0 0.05 0',
+        width: '0.4',
+        height: '0.2'
     });
     addButtonResize('decrease', containerButtons);
     addButtonResize('increase', containerButtons);
@@ -29,8 +32,7 @@ function addContainerButton() {
 function addButtonResize(operation: string, container: HTMLElement) {
     // Create Button
     const buttonControl = createButton({
-        value: operation === 'increase' ? '+' : '-',
-        'background-color': 'grey'
+        value: operation === 'increase' ? '+' : '-'
     });
 
     // Interaction

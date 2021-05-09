@@ -5,8 +5,8 @@ export function addControlCloseMenu(parentMenu: HTMLElement, figure: Figure) {
     // Create Button
     const closeControl = createButton({
         value: 'X',
-        margin: '0 0 0.05 0',
-        'background-color': '#e07979'
+        margin: '0 0 0.1 0',
+        'background-color': '#c41b1b'
     });
 
     // Interaction

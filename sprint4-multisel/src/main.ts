@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const initialFigures: Array<Figure> = [
         new Cone({
             'radius-bottom': 0.3,
-            height: 1,
+            height: 0.8,
             color: 'red'
         }),
         new Cylinder({
             radius: 0.3,
-            height: 1,
+            height: 0.8,
             color: 'blue'
         }),
         new Sphere({

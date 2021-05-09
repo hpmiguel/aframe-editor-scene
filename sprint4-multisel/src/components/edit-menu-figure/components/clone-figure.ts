@@ -7,8 +7,7 @@ export function addControlCloneFigure(parentMenu: HTMLElement, figure: Figure) {
     const cloneControl = createButton({
         value: 'Clone',
         margin: '0 0 0.05 0',
-        width: '0.5',
-        'background-color': '#4561c1'
+        width: '0.5'
     });
 
     // Interaction

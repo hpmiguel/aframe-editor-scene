@@ -1,5 +1,7 @@
 // utils
 
+import {fontsPath} from "../utils/constants";
+
 function componentToHex(c: number): string {
     const hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
@@ -49,9 +51,12 @@ export function createLabel(text: string, props?: any): HTMLElement {
         width: '1',
         height: '0.2',
         value: text,
-        'font-family': 'Arial',
+        'font-family': fontsPath+'/PressStart2P-Regular.ttf',
         'font-size': '80px',
-        margin: "0 0 0.05 0"
+        margin: "0 0 0.05 0",
+        opacity: '0.8',
+        'font-color': 'white',
+        'background-color': '#363184'
     }
 
     setHtmlTags(labelGui, defaultProps);
@@ -73,7 +78,8 @@ export function createInputText(props?): HTMLElement {
         'border-hover-color': '#212121',
         'background-color': '#FAFAFA',
         'hover-color': '#F5F5F5',
-        'active-color': '#FFEB3B'
+        'active-color': '#FFEB3B',
+        opacity: '0.8'
     };
 
     setHtmlTags(inputControl, defaultProps);
@@ -89,9 +95,12 @@ export function createButton(props?): HTMLElement {
     const defaultProps = {
         width: '0.2',
         height: '0.2',
-        'font-family': 'Arial',
+        // 'font-family': 'Arial',
         'font-size': '80px',
-        'font-color': '#212121'
+        'font-color': 'white',
+        'background-color': '#606e9e',
+        'hover-color': '#8791af',
+        opacity: '0.8'
     };
 
     setHtmlTags(buttonControl, defaultProps);
@@ -106,9 +115,14 @@ export function createSlider(props?): HTMLElement {
     // Style properties
     const defaultProps = {
         width: '1',
-        height: '0.3',
-        percent: '0.9',
-        margin: '0 0 0.05 0'
+        height: '0.25',
+        percent: '0.5',
+        margin: '0 0 0.05 0',
+        opacity: '0.8',
+        'slider-bar-height': '0.01',
+        'handle-outer-radius': '0.1',
+        'handle-inner-radius': '0.07',
+        'background-color': '#50687d'
     };
 
     setHtmlTags(editControl, defaultProps);
@@ -122,10 +136,13 @@ export function createToggle(props?): HTMLElement {
 
     // Style properties
     const defaultProps = {
-        width: '0.9',
+        width: '0.7',
         height: '0.2',
         'font-size': '70px',
-        margin: '0 0 0.05 0'
+        'font-color': 'white',
+        margin: '0 0 0.05 0',
+        opacity: '0.8',
+        'background-color': '#50687d'
     };
 
     setHtmlTags(editControl, defaultProps);

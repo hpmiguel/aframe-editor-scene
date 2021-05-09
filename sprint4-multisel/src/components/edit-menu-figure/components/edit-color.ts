@@ -22,7 +22,10 @@ export function addControlEditColor(parentMenu: HTMLElement, figure: Figure) {
 
 function addContainerButton(rgbComponent: string) {
     const containerButtons = createContainer({
-        'flex-direction': 'row'
+        'flex-direction': 'row',
+        margin: '0 0 0.01 0',
+        width: '0.4',
+        height: '0.2'
     });
     addButtonColor(rgbComponent, 'decrease', containerButtons);
     addButtonColor(rgbComponent, 'increase', containerButtons);
