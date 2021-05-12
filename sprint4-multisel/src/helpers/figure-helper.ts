@@ -1,8 +1,8 @@
 import {Box, Cone, Cylinder, Figure, FigureBehaviour, Sphere} from '../models/figure';
 import {GlobalState} from "../services/global-state";
-import {selectableFigureSceneAttr} from "../components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
-import {selectableFigurePaletteAttr} from "../components/behaviour-components/selectable-figure-palette/selectable-figure-palette";
-import {EditMenuFigure} from "../components/edit-menu-figure/edit-menu-figure";
+import { selectableFigureSceneAttr } from "../components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
+import { selectableFigurePaletteAttr } from "../components/behaviour-components/selectable-figure-palette/selectable-figure-palette";
+import { EditMenuFigure } from "../components/edit-menu-figure/edit-menu-figure";
 
 const globalState = GlobalState.getInstance();
 
@@ -137,14 +137,22 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     // Setting basic props
     figEl.setAttribute('position', figCoords);
     const figProps = Object.keys(fig);
-    figProps.forEach(key => {
-        if (key !== 'primitive') {
-            if (key === 'shadow') {
+    figProps.forEach(prop => {
+        switch (prop) {
+            case 'shadow':
                 const shadowActive = Boolean(fig['shadow']);
-                if (shadowActive) figEl.setAttribute('shadow', `receive: ${shadowActive}`)
-            } else {
-                figEl.setAttribute(key, fig[key]);
-            }
+                if (shadowActive) figEl.setAttribute('shadow', `receive: ${shadowActive}`);
+                break;
+            case 'physics':
+                const physicsConf = fig[prop];
+                if (physicsConf) {
+                    figEl.setAttribute('ammo-body', `type: ${physicsConf.body}`);
+                    figEl.setAttribute('ammo-shape', `type: ${physicsConf.shape}`);
+                }
+                break;
+            default:
+                if (prop!=='primitive') figEl.setAttribute(prop, fig[prop]);
+                break;
         }
     });
 

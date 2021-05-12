@@ -4,6 +4,7 @@ export class SceneRef {
     private static instance: SceneRef;
 
     private sceneEl: HTMLElement = document.querySelector('a-scene');
+    private figuresContainerEl: HTMLElement = document.querySelector('#figures-container');
 
     private constructor() {}
 
@@ -16,5 +17,9 @@ export class SceneRef {
 
     public getSceneEl(): HTMLElement {
         return this.sceneEl;
+    }
+
+    public getFiguresContainer(): HTMLElement {
+        return this.figuresContainerEl;
     }
 }

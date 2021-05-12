@@ -9,9 +9,10 @@ class Figure {
     shadow?: boolean = false;
     opacity?: number = 1;
     wireFrame?: boolean = false;
+    physics?: { body: string, shape: string } = null;
 
     constructor(fig: Figure) {
-        const {primitive, id, color, material, shadow, opacity, wireFrame} = fig;
+        const {primitive, id, color, material, shadow, opacity, wireFrame, physics} = fig;
         this.primitive = primitive;
         if (id) { this.id = id; }
         if (color) { this.color = color; }
@@ -19,6 +20,7 @@ class Figure {
         if (shadow) { this.shadow = shadow; }
         if (opacity) { this.opacity = opacity; }
         if (wireFrame) { this.wireFrame = wireFrame; }
+        if (physics) { this.physics = physics; }
     }
 
     setColor?(color: string) {

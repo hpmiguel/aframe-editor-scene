@@ -14,6 +14,11 @@ import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
 import { registerSelectableFigureScene } from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
+import { loadScript } from "./utils/script-loading";
+
+// TODO import like modules, test compile ammo module to wasm
+// import * as Ammo from './vendor/ammo.wasm' // compiled online
+// import 'aframe-physics-system';
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -21,7 +26,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Building scene
 
-    const scene = SceneRef.getInstance().getSceneEl();
+    // Asynchronous loading physics libs
+    loadScript('ammo.wasm');
+    loadScript('aframe-physics-system.min');
+
+    const figuresContainer = SceneRef.getInstance().getFiguresContainer();
 
     new LightScene({
         type: 'directional',
@@ -31,18 +40,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
         position: "1 2 1.8"
     });
 
-    // Render table to append cloned figures
-    const table = new Plane({
+    const floor = new Plane({
         id: clonePodiumId,
-        height: 2,
-        width: 3,
+        height: 3,
+        width: 5,
         rotation: '-90 0 0',
         material: {
             src: textures.WOODEN,
             roughness: 1
+        },
+        physics: {
+            body: 'static',
+            shape: 'box'
         }
     });
-    appendFigure(table, '-0.8 0.01 1.8', scene);
+    appendFigure(floor, '-0.8 0.01 1.8', figuresContainer);
     registerSelectableFigureScene();
 
     const initialFigures: Array<Figure> = [
@@ -54,7 +66,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         new Cylinder({
             radius: 0.3,
             height: 0.8,
-            color: 'blue'
+            color: 'blue',
+            physics: {
+                body: 'dynamic',
+                shape: 'box'
+            }
         }),
         new Sphere({
             radius: 0.3,
@@ -64,14 +80,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
             height: 0.5,
             width: 0.5,
             depth: 0.5,
-            color: 'green'
+            color: 'green',
+            physics: {
+                body: 'dynamic',
+                shape: 'box'
+            }
         })
     ];
+
 
     // Render figures palette
     new FiguresPalette(
         {
-            position: "0 2 0",
+            position: "-0.5 1 1.5",
             rotation: "0 0 0"
         },
         initialFigures
