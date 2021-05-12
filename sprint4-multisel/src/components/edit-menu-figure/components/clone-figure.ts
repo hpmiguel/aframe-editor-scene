@@ -1,6 +1,7 @@
 import {Figure} from "../../../models/figure";
 import {createButton} from "../../../helpers/gui-helper";
 import {duplicateFigure} from "../../../helpers/figure-helper";
+import {clonePodiumId} from "../../../utils/constants";
 
 export function addControlCloneFigure(parentMenu: HTMLElement, figure: Figure) {
     // Create Button
@@ -17,7 +18,7 @@ export function addControlCloneFigure(parentMenu: HTMLElement, figure: Figure) {
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
-            const tableDest = document.querySelector(`a-plane`);
+            const tableDest = document.querySelector('#'+clonePodiumId);
             duplicateFigure(figure.htmlRef, tableDest);
         }
     }

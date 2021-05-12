@@ -10,7 +10,7 @@ import $ from "jquery";
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './helpers/figure-helper';
-import { textures } from './utils/constants';
+import {clonePodiumId, textures} from './utils/constants';
 import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
 
-    const sceneEl = SceneRef.getInstance().getSceneEl();
+    const figuresContainer = SceneRef.getInstance().getFiguresContainer();
     const globalState = GlobalState.getInstance();
 
     new LightScene({
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Render table to append cloned figures
     const table = new Plane({
+        id: clonePodiumId,
         height: 1,
         width: 2,
         rotation: '-90 0 0',
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             roughness: 1
         }
     });
-    appendFigure(table, '-0.8 0.01 1.8', sceneEl);
+    appendFigure(table, '-0.8 0.01 1.8', figuresContainer);
 
     const initialFigures: Array<Figure> = [
         new Cone({

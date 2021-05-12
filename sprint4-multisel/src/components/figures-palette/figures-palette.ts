@@ -33,14 +33,14 @@ export class FiguresPalette {
      * Insert Palette on scene
      */
     private appendPalette(attrs) {
-        const sceneEl = SceneRef.getInstance().getSceneEl();
+        const figuresContainer = SceneRef.getInstance().getFiguresContainer();
         this.entityRef = document.createElement('a-entity');
         this.entityRef.setAttribute('id', this.componentId);
         let attrsKeys = Object.keys(attrs);
         attrsKeys.forEach((key) => {
             this.entityRef.setAttribute(key, attrs[key]);
         });
-        sceneEl.appendChild(this.entityRef);
+        figuresContainer.appendChild(this.entityRef);
     }
 
 }

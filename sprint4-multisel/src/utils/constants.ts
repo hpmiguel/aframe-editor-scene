@@ -10,3 +10,5 @@ export const textures = {
     WALLBRICK:  texturesPath + 'wall-brick' + imgExt,
     WOODEN:  texturesPath + 'wooden' + imgExt
 }
+
+export const clonePodiumId = 'clone-podium'
