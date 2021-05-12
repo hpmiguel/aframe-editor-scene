@@ -15,6 +15,8 @@
     "aframe-environment-component": "^1.2.0",
     "aframe-event-set-component": "^5.0.0",
     "aframe-gui": "^0.5.1",
+    "aframe-physics-system": "^4.0.1",
+    "ammo.js": "^0.0.10",
     "cypress": "^6.8.0",
     "jquery": "^3.6.0",
     "lodash-es": "^4.17.21",
