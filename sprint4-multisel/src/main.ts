@@ -1,27 +1,25 @@
-// Global imports
+// Global libs imports
 import 'aframe';
 import 'aframe-event-set-component';
 import 'aframe-environment-component';
 import 'super-hands';
 import 'aframe-gui';
 
-import $ from "jquery";
-
+// Modules imports
 import { Box, Cone, Cylinder, Figure, Plane, Sphere } from './models/figure';
 import { SceneRef } from './services/scene-ref';
 import { appendFigure } from './helpers/figure-helper';
-import {clonePodiumId, textures} from './utils/constants';
+import { clonePodiumId, textures } from './utils/constants';
 import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
-import {GlobalState} from "./services/global-state";
+import {registerSelectableFigureScene} from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
 
-    const figuresContainer = SceneRef.getInstance().getFiguresContainer();
-    const globalState = GlobalState.getInstance();
+    const scene = SceneRef.getInstance().getSceneEl();
 
     new LightScene({
         type: 'directional',
@@ -34,15 +32,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Render table to append cloned figures
     const table = new Plane({
         id: clonePodiumId,
-        height: 1,
-        width: 2,
+        height: 2,
+        width: 3,
         rotation: '-90 0 0',
         material: {
             src: textures.WOODEN,
             roughness: 1
         }
     });
-    appendFigure(table, '-0.8 0.01 1.8', figuresContainer);
+    appendFigure(table, '-0.8 0.01 1.8', scene);
+    registerSelectableFigureScene();
 
     const initialFigures: Array<Figure> = [
         new Cone({
@@ -70,14 +69,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Render figures palette
     new FiguresPalette(
         {
-            position: "0 0.5 0",
+            position: "0 2 0",
             rotation: "0 0 0"
         },
         initialFigures
     );
-
-    // Caching global figure models
-    globalState.setSceneFigures(initialFigures);
 
     // Global Menu
     new GlobalMenu();

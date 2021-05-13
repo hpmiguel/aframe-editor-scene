@@ -1,5 +1,8 @@
 import {Figure} from "../../../models/figure";
 import {createButton} from "../../../helpers/gui-helper";
+import {GlobalState} from "../../../services/global-state";
+
+const globalState = GlobalState.getInstance();
 
 export function addControlDeleteFigure(parentMenu: HTMLElement, figure: Figure) {
     // Create Button
@@ -17,6 +20,8 @@ export function addControlDeleteFigure(parentMenu: HTMLElement, figure: Figure) 
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
+            globalState.removeSceneFigure(figure.htmlRef);
+            globalState.deselectFigure(figure.htmlRef);
             figure.htmlRef.remove();
         }
     }

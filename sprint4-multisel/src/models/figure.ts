@@ -121,4 +121,10 @@ class Plane extends Figure {
     }
 }
 
-export { Figure, Cone, Cylinder, Sphere, Box, Plane }
+type FigureBehaviour = {
+    draggable: boolean;
+    hoverable: boolean;
+    custom: string;
+}
+
+export { Figure, Cone, Cylinder, Sphere, Box, Plane, FigureBehaviour }

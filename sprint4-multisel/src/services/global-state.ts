@@ -19,6 +19,8 @@ export class GlobalState {
         return GlobalState.instance;
     }
 
+    // sceneFigures
+
     public getSceneFigures(): Array<Figure> {
         return this.sceneFigures;
     }
@@ -26,6 +28,12 @@ export class GlobalState {
     public setSceneFigures(figures: Array<Figure>) {
         this.sceneFigures = figures;
     }
+
+    public removeSceneFigure(figEl: HTMLElement) {
+        this.sceneFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML);
+    }
+
+    // multiselectEnable
 
     public getMultiselectEnable(): boolean {
         return this.multiselectEnable;
@@ -35,12 +43,18 @@ export class GlobalState {
         this.multiselectEnable = enable;
     }
 
+    // selectedFigures
+
     public getSelectedFigures(): Array<Figure> {
         return this.selectedFigures;
     }
 
     public setSelectedFigures(selFigs: Array<Figure>) {
         this.selectedFigures = selFigs;
+    }
+
+    public deselectFigure(figEl: HTMLElement) {
+        this.selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML);
     }
 
 }

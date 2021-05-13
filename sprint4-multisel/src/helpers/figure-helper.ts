@@ -1,7 +1,8 @@
-import { Figure } from '../models/figure';
-import { EditMenuFigure } from '../components/edit-menu-figure/edit-menu-figure';
-import { selectableFigureAttr } from '../components/behaviour-components/selectable-figure/selectable-figure';
+import {Figure, FigureBehaviour} from '../models/figure';
 import {GlobalState} from "../services/global-state";
+import {selectableFigureSceneAttr} from "../components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
+import {selectableFigurePaletteAttr} from "../components/behaviour-components/selectable-figure-palette/selectable-figure-palette";
+import {EditMenuFigure} from "../components/edit-menu-figure/edit-menu-figure";
 
 const globalState = GlobalState.getInstance();
 
@@ -23,6 +24,22 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     clonedFigureEl.setAttribute('position', '0 0 0.5');
     clonedFigureEl.setAttribute('rotation', '90 0 0'); // Because plane is already rotated
 
+    // Change behaviour
+    clonedFigureEl.removeAttribute(selectableFigurePaletteAttr);
+    clonedFigureEl.setAttribute(selectableFigureSceneAttr, '');
+
+    // Superhands Props
+    const behaviour = { hoverable: false, draggable: true };
+    setInteractionProperties(clonedFigureEl, behaviour);
+    setInteractionBehaviour(clonedFigureEl, behaviour);
+
+    const clonedFigure = new Figure({}); // fake model to have interface
+    clonedFigure.htmlRef = clonedFigureEl;
+    new EditMenuFigure(clonedFigure);
+
+    // Caching model figures
+    globalState.getSceneFigures().push(clonedFigure);
+
     // Append to dest
     parent.appendChild(clonedFigureEl);
 }
@@ -43,7 +60,7 @@ export function markFigureAsSelected(figEl: HTMLElement) {
         selectedFigures.push(figModel);
         figEl.setAttribute('color', 'cyan');
     } else {
-        globalState.setSelectedFigures(selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML));
+        globalState.deselectFigure(figEl);
         figEl.setAttribute('color', figModel.color);
     }
 }
@@ -57,21 +74,30 @@ export function propsInLine(props: any): string {
     return materialAttr;
 }
 
-function setInteractionProperties(figEl) {
-    figEl.setAttribute('hoverable', '');
-    figEl.setAttribute('grabbable', '');
-    figEl.setAttribute('draggable', '');
+function setInteractionProperties(figEl, eventsActive: {draggable: boolean, hoverable: boolean}) {
+    if (eventsActive.hoverable) {
+        figEl.setAttribute('hoverable', '');
+    }
+    if (eventsActive.draggable) {
+        figEl.setAttribute('grabbable', '');
+        figEl.setAttribute('draggable', '');
+    }
 }
 
-function setInteractionBehaviour(figEl) {
-    figEl.setAttribute('event-set__hoveron', '_event: hover-start; material.opacity: 0.8; transparent: true');
-    figEl.setAttribute('event-set__hoveroff', '_event: hover-end; material.opacity: 1; transparent: false');
-    figEl.setAttribute('event-set__dragdrop', 'event: drag-drop');
-    figEl.setAttribute('event-set__dragon', '_event: dragover-start;'); // material.wireframe: true
-    figEl.setAttribute('event-set__dragoff', '_event: dragover-end;'); // material.wireframe: false
+function setInteractionBehaviour(figEl, eventsActive: {draggable: boolean, hoverable: boolean}) {
+    if (eventsActive.hoverable) {
+        figEl.setAttribute('event-set__hoveron', '_event: hover-start; material.opacity: 0.8; transparent: true');
+        figEl.setAttribute('event-set__hoveroff', '_event: hover-end; material.opacity: 1; transparent: false');
+    }
+    if (eventsActive.draggable) {
+        figEl.setAttribute('event-set__dragdrop', 'event: drag-drop');
+        figEl.setAttribute('event-set__dragon', '_event: dragover-start;');
+        figEl.setAttribute('event-set__dragoff', '_event: dragover-end;');
+    }
 }
 
-export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement) {
+export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement,
+                             behaviour: FigureBehaviour = {draggable: false, hoverable: false, custom: ''}) {
     // Initializing fig html element
     const figEl = document.createElement(fig.primitive);
 
@@ -90,15 +116,13 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
 
     // Setting interaction props and events
     figEl.setAttribute('class', 'selectable-superhands');
-    figEl.setAttribute(selectableFigureAttr, ''); // My custom behaviour
+    if (behaviour.custom) figEl.setAttribute(behaviour.custom, ''); // My custom behaviour
 
     // Superhands Props
-    setInteractionProperties(figEl);
-    setInteractionBehaviour(figEl);
+    setInteractionProperties(figEl, behaviour);
+    setInteractionBehaviour(figEl, behaviour);
 
     parent.appendChild(figEl);
 
     fig.htmlRef = figEl;
-
-    new EditMenuFigure(fig);
 }

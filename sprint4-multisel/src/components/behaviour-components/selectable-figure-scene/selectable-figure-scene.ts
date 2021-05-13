@@ -1,15 +1,15 @@
 import { registerComponent } from 'aframe';
-import { showFigureMenu, markFigureAsSelected } from '../../../helpers/figure-helper';
+import {showFigureMenu, markFigureAsSelected, cloneProperties} from '../../../helpers/figure-helper';
 import {GlobalState} from "../../../services/global-state";
 
-export const selectableFigureAttr = 'selectable-custom';
+export const selectableFigureSceneAttr = 'selectable-figure-scene';
 
-export function registerSelectableFigure() {
-    const selectableFigureComponent = {
+export function registerSelectableFigureScene() {
+    const selectableFigureSceneComponent = {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
-            // const originalAttrs: any = cloneProperties(figSelected);
+            let originalAttrs: any = cloneProperties(figSelected);
             let lastClick = null;
             const globalState = GlobalState.getInstance();
 
@@ -25,6 +25,7 @@ export function registerSelectableFigure() {
                         const thisClick = new Date().getTime();
                         const isDblClick = thisClick - lastClick < 400;
                         if (isDblClick) {
+                            console.log('doble click scene!!!!!!')
                             const multiselectEnable = globalState.getMultiselectEnable();
                             if (multiselectEnable) {
                                 markFigureAsSelected(figSelected);
@@ -38,15 +39,16 @@ export function registerSelectableFigure() {
             });
 
             // Hover
-            // this.el.addEventListener('mouseover', function (evt) {
-            //     figSelected.setAttribute('color', 'cyan');
-            // });
-            //
-            // this.el.addEventListener('mouseleave', function (evt) {
-            //     const originalColor = originalAttrs.color === undefined ? originalAttrs.color : 'white';
-            //     figSelected.setAttribute('color', originalColor);
-            // });
+            this.el.addEventListener('mouseover', function (evt) {
+                originalAttrs = cloneProperties(figSelected);
+                figSelected.setAttribute('opacity', '0.7');
+            });
+
+            this.el.addEventListener('mouseleave', function (evt) {
+                const originalOpacity = originalAttrs.opacity ?? '1';
+                figSelected.setAttribute('opacity', originalOpacity);
+            });
         }
     };
-    registerComponent(selectableFigureAttr, selectableFigureComponent);
+    registerComponent(selectableFigureSceneAttr, selectableFigureSceneComponent);
 }
