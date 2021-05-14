@@ -1,4 +1,4 @@
-import {Figure, FigureBehaviour} from '../models/figure';
+import {Box, Cone, Cylinder, Figure, FigureBehaviour, Sphere} from '../models/figure';
 import {GlobalState} from "../services/global-state";
 import {selectableFigureSceneAttr} from "../components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 import {selectableFigurePaletteAttr} from "../components/behaviour-components/selectable-figure-palette/selectable-figure-palette";
@@ -14,6 +14,36 @@ export function cloneProperties(node): any {
         originalAttrs[attr.nodeName] = attr.nodeValue;
     }
     return originalAttrs;
+}
+
+function recoverPropsFigure(figEl: HTMLElement): Figure {
+    const tagElement = figEl.tagName.toLowerCase();
+
+    let figureModel: Figure;
+    switch (tagElement) {
+        case 'a-sphere':
+            figureModel = new Sphere({radius: 0});
+            break;
+        case 'a-cone':
+            figureModel = new Cone({"radius-bottom": 0, height: 0});
+            break;
+        case 'a-box':
+            figureModel = new Box({width: 0, height: 0, depth: 0});
+            break;
+        case 'a-cylinder':
+            figureModel = new Cylinder({radius: 0, height: 0});
+            break;
+        default:
+            break;
+    }
+
+    const figurePropsNames = Object.getOwnPropertyNames(figureModel);
+
+    figurePropsNames.forEach(prop => {
+       figureModel[prop] = figEl.getAttribute(prop);
+    });
+
+    return figureModel;
 }
 
 export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
@@ -33,7 +63,7 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     setInteractionProperties(clonedFigureEl, behaviour);
     setInteractionBehaviour(clonedFigureEl, behaviour);
 
-    const clonedFigure = new Figure({}); // fake model to have interface
+    const clonedFigure = recoverPropsFigure(clonedFigureEl);
     clonedFigure.htmlRef = clonedFigureEl;
     new EditMenuFigure(clonedFigure);
 

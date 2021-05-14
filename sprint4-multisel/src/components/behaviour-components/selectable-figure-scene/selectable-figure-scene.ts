@@ -25,7 +25,6 @@ export function registerSelectableFigureScene() {
                         const thisClick = new Date().getTime();
                         const isDblClick = thisClick - lastClick < 400;
                         if (isDblClick) {
-                            console.log('doble click scene!!!!!!')
                             const multiselectEnable = globalState.getMultiselectEnable();
                             if (multiselectEnable) {
                                 markFigureAsSelected(figSelected);
