@@ -28,9 +28,13 @@ class Figure {
 
     setMaterial?(material: any) {
         this.material = material;
-        const materialAttr: string = material && propsInLine(material);
-        this.color !== 'white' && this.setColor('white');
-        this.htmlRef.setAttribute('material', materialAttr);
+        if (material) {
+            const materialAttr: string = propsInLine(material);
+            this.color !== 'white' && this.setColor('white');
+            this.htmlRef.setAttribute('material', materialAttr);
+        } else {
+            this.htmlRef.removeAttribute('material');
+        }
     }
 
     setOpacity?(percent: number) {

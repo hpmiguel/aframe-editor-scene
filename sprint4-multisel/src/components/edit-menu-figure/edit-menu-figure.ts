@@ -37,7 +37,7 @@ export class EditMenuFigure {
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '1.3',
-            height: '3.6',
+            height: '3.8',
             position: '0 2.3 0',
             'panel-color': '#93b2e8'
         });

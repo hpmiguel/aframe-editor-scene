@@ -63,11 +63,14 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     setInteractionProperties(clonedFigureEl, behaviour);
     setInteractionBehaviour(clonedFigureEl, behaviour);
 
+    // Recreate figure model from DOM
     const clonedFigure = recoverPropsFigure(clonedFigureEl);
     clonedFigure.htmlRef = clonedFigureEl;
+
+    // Adding Menu to cloned figure
     new EditMenuFigure(clonedFigure);
 
-    // Caching model figures
+    // Caching model figures on global state
     globalState.getSceneFigures().push(clonedFigure);
 
     // Append to dest
