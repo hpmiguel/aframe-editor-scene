@@ -114,12 +114,12 @@ export function createSlider(props?): HTMLElement {
 
     // Style properties
     const defaultProps = {
-        width: '1',
+        width: '2.5',
         height: '0.25',
-        percent: '0.5',
+        percent: '0.99',
         margin: '0 0 0.05 0',
         opacity: '0.8',
-        'slider-bar-height': '0.01',
+        //'slider-bar-height': '0.01',
         'handle-outer-radius': '0.1',
         'handle-inner-radius': '0.07',
         'background-color': '#50687d'
