@@ -9,7 +9,7 @@ export function registerSelectableFigureScene() {
         dependencies: ['raycaster'],
         init: function () {
             const figSelected = this.el;
-            let originalAttrs: any = cloneProperties(figSelected);
+            let cachedProps: any;
             let lastClick = null;
             const globalState = GlobalState.getInstance();
 
@@ -37,15 +37,22 @@ export function registerSelectableFigureScene() {
                 }
             });
 
+            const opacityReduction = 0.2;
+
             // Hover
             this.el.addEventListener('mouseover', function (evt) {
-                originalAttrs = cloneProperties(figSelected);
-                figSelected.setAttribute('opacity', '0.7');
+                cachedProps = cloneProperties(figSelected);
+                const figOpacity = Number(cachedProps.opacity);
+                const opacityHover = figOpacity - opacityReduction;
+                figSelected.setAttribute('opacity', opacityHover.toString());
             });
 
             this.el.addEventListener('mouseleave', function (evt) {
-                const originalOpacity = originalAttrs.opacity ?? '1';
-                figSelected.setAttribute('opacity', originalOpacity);
+                const figOpacityNow = Number(figSelected.getAttribute('opacity'));
+                const figOpacityCached = Number(cachedProps.opacity);
+                const opacityChanged = figOpacityNow !== (figOpacityCached - opacityReduction);
+                const opacityRollback = opacityChanged ? figOpacityNow : figOpacityNow + opacityReduction;
+                figSelected.setAttribute('opacity', opacityRollback.toString());
             });
         }
     };
