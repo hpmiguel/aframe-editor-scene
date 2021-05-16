@@ -26,11 +26,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Building scene
 
-    // Asynchronous loading physics libs
-    loadScript('ammo.wasm');
-    loadScript('aframe-physics-system.min');
+    const physicsActive: boolean = true;
 
-    const figuresContainer = SceneRef.getInstance().getFiguresContainer();
+    // Asynchronous loading physics libs
+    if (physicsActive) {
+        loadScript('ammo.wasm');
+        loadScript('aframe-physics-system.min');
+    }
+
+    const scene = SceneRef.getInstance().getSceneEl();
 
     new LightScene({
         type: 'directional',
@@ -54,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             shape: 'box'
         }
     });
-    appendFigure(floor, '-0.8 0.01 1.8', figuresContainer);
+    appendFigure(floor, '-0.8 0.01 1.8', scene);
     registerSelectableFigureScene();
 
     const initialFigures: Array<Figure> = [
@@ -66,11 +70,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         new Cylinder({
             radius: 0.3,
             height: 0.8,
-            color: 'blue',
-            physics: {
-                body: 'dynamic',
-                shape: 'box'
-            }
+            color: 'blue'
         }),
         new Sphere({
             radius: 0.3,
@@ -80,11 +80,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             height: 0.5,
             width: 0.5,
             depth: 0.5,
-            color: 'green',
-            physics: {
-                body: 'dynamic',
-                shape: 'box'
-            }
+            color: 'green'
         })
     ];
 
@@ -92,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Render figures palette
     new FiguresPalette(
         {
-            position: "-0.5 1 1.5",
+            position: "0 2 0",
             rotation: "0 0 0"
         },
         initialFigures

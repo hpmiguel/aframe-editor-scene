@@ -1,4 +1,4 @@
-import {propsInLine} from "../helpers/figure-helper";
+import {propsInLine, setPhysicsHtml, setShadowHtml} from "../helpers/figure-helper";
 
 class Figure {
     id?: string;
@@ -9,7 +9,7 @@ class Figure {
     shadow?: boolean = false;
     opacity?: number = 1;
     wireFrame?: boolean = false;
-    physics?: { body: string, shape: string } = null;
+    physics?: Physics = null;
 
     constructor(fig: Figure) {
         const {primitive, id, color, material, shadow, opacity, wireFrame, physics} = fig;
@@ -57,7 +57,12 @@ class Figure {
     setShadow?(shadow: boolean) {
         // const shadowStatus = this.htmlRef.getAttribute('shadow')['receive'];
         this.shadow = shadow;
-        this.htmlRef.setAttribute('shadow', `receive: ${shadow}`);
+        setShadowHtml(this.htmlRef, shadow);
+    }
+
+    setPhysics?(physics: Physics) {
+        this.physics = physics;
+        setPhysicsHtml(this.htmlRef, physics);
     }
 
 }
@@ -133,4 +138,9 @@ type FigureBehaviour = {
     custom: string;
 }
 
-export { Figure, Cone, Cylinder, Sphere, Box, Plane, FigureBehaviour }
+type Physics = {
+    body: string;
+    shape: string;
+}
+
+export { Figure, Cone, Cylinder, Sphere, Box, Plane, FigureBehaviour, Physics }

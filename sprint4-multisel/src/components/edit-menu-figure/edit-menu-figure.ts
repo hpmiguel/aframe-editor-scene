@@ -11,6 +11,7 @@ import {addControlEditShadow} from './components/edit-shadow';
 import {addControlCloseMenu} from "./components/close-menu";
 import {addControlCloneFigure} from "./components/clone-figure";
 import {addControlDeleteFigure} from "./components/delete-figure";
+import {addControlPhysicsFigure} from "./components/edit-physics";
 
 export class EditMenuFigure {
 
@@ -31,13 +32,14 @@ export class EditMenuFigure {
         addControlEditMaterial(this.entityRef, fig);
         addControlEditShadow(this.entityRef, fig);
         addControlCloneFigure(this.entityRef, fig);
+        addControlPhysicsFigure(this.entityRef, fig);
         addControlDeleteFigure(this.entityRef, fig);
     }
 
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '2.6',
-            height: '3.8',
+            height: '4',
             position: '0 2.3 0',
             'panel-color': '#93b2e8'
         });

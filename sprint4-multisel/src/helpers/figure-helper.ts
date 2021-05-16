@@ -1,4 +1,4 @@
-import {Box, Cone, Cylinder, Figure, FigureBehaviour, Sphere} from '../models/figure';
+import {Box, Cone, Cylinder, Figure, FigureBehaviour, Physics, Sphere} from '../models/figure';
 import {GlobalState} from "../services/global-state";
 import { selectableFigureSceneAttr } from "../components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 import { selectableFigurePaletteAttr } from "../components/behaviour-components/selectable-figure-palette/selectable-figure-palette";
@@ -22,16 +22,16 @@ function recoverPropsFigure(figEl: HTMLElement): Figure {
     let figureModel: Figure;
     switch (tagElement) {
         case 'a-sphere':
-            figureModel = new Sphere({radius: 0});
+            figureModel = new Sphere({ radius: 0 });
             break;
         case 'a-cone':
-            figureModel = new Cone({"radius-bottom": 0, height: 0});
+            figureModel = new Cone({ "radius-bottom": 0, height: 0 });
             break;
         case 'a-box':
-            figureModel = new Box({width: 0, height: 0, depth: 0});
+            figureModel = new Box({ width: 0, height: 0, depth: 0 });
             break;
         case 'a-cylinder':
-            figureModel = new Cylinder({radius: 0, height: 0});
+            figureModel = new Cylinder({ radius: 0, height: 0 });
             break;
         default:
             break;
@@ -51,7 +51,7 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     const clonedFigureEl = figEl.cloneNode() as HTMLElement;
 
     // Setting destination position
-    clonedFigureEl.setAttribute('position', '0 0 0.5');
+    clonedFigureEl.setAttribute('position', '0 0 1.5');
     clonedFigureEl.setAttribute('rotation', '90 0 0'); // Because plane is already rotated
 
     // Change behaviour
@@ -67,6 +67,15 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
     const clonedFigure = recoverPropsFigure(clonedFigureEl);
     clonedFigure.htmlRef = clonedFigureEl;
 
+    // Add physics fall animation
+    clonedFigure.setPhysics({
+        body: 'dynamic',
+        shape: 'box'
+    });
+
+    // Removed physics to enable drag
+    setTimeout(() => clonedFigure.setPhysics(null), 2000);
+
     // Adding Menu to cloned figure
     new EditMenuFigure(clonedFigure);
 
@@ -75,6 +84,20 @@ export function duplicateFigure(figEl: HTMLElement, parent: HTMLElement) {
 
     // Append to dest
     parent.appendChild(clonedFigureEl);
+}
+
+export function setShadowHtml(figEl: HTMLElement, shadow: boolean) {
+    figEl.setAttribute('shadow', `receive: ${shadow}`)
+}
+
+export function setPhysicsHtml(figEl: HTMLElement, physics: Physics) {
+    if (physics) {
+        physics?.body && figEl.setAttribute('ammo-body', `type: ${physics.body}`);
+        physics?.shape && figEl.setAttribute('ammo-shape', `type: ${physics.shape}`);
+    } else {
+        figEl.removeAttribute('ammo-body');
+        figEl.removeAttribute('ammo-shape');
+    }
 }
 
 export function showFigureMenu(figEl: HTMLElement) {
@@ -140,15 +163,12 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     figProps.forEach(prop => {
         switch (prop) {
             case 'shadow':
-                const shadowActive = Boolean(fig['shadow']);
-                if (shadowActive) figEl.setAttribute('shadow', `receive: ${shadowActive}`);
+                const shadowActive = Boolean(fig.shadow);
+                if (shadowActive) setShadowHtml(figEl, shadowActive);
                 break;
             case 'physics':
-                const physicsConf = fig[prop];
-                if (physicsConf) {
-                    figEl.setAttribute('ammo-body', `type: ${physicsConf.body}`);
-                    figEl.setAttribute('ammo-shape', `type: ${physicsConf.shape}`);
-                }
+                const physicsConf = fig.physics;
+                setPhysicsHtml(figEl, physicsConf);
                 break;
             default:
                 if (prop!=='primitive') figEl.setAttribute(prop, fig[prop]);
