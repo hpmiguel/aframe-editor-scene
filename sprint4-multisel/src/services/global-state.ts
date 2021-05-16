@@ -54,7 +54,7 @@ export class GlobalState {
     }
 
     public deselectFigure(figEl: HTMLElement) {
-        this.selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML);
+        this.selectedFigures = this.selectedFigures.filter(sel => sel.htmlRef.innerHTML !== figEl.innerHTML);
     }
 
 }
