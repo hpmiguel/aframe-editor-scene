@@ -140,7 +140,8 @@ export function appendFigure(fig: Figure, figCoords: string, parent: HTMLElement
     figProps.forEach(key => {
         if (key !== 'primitive') {
             if (key === 'shadow') {
-                figEl.setAttribute('shadow', `receive: ${fig[key]}`)
+                const shadowActive = Boolean(fig['shadow']);
+                if (shadowActive) figEl.setAttribute('shadow', `receive: ${shadowActive}`)
             } else {
                 figEl.setAttribute(key, fig[key]);
             }

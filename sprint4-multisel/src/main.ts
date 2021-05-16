@@ -13,11 +13,13 @@ import { clonePodiumId, textures } from './utils/constants';
 import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
-import {registerSelectableFigureScene} from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
+import { registerSelectableFigureScene } from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
     console.log("DOM fully loaded");
+
+    // Building scene
 
     const scene = SceneRef.getInstance().getSceneEl();
 

@@ -14,7 +14,8 @@ export function addControlEditShadow(parentMenu: HTMLElement, figure: Figure) {
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
-            const shadowStatus = figure.htmlRef.getAttribute('shadow')['receive'];
+            const shadowTag = figure.htmlRef.getAttribute('shadow') as any;
+            const shadowStatus = Boolean(shadowTag?.receive);
             figure.setShadow(!shadowStatus);
         }
     }
