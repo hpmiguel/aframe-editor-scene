@@ -1,5 +1,6 @@
 import {createToggle} from "../../../helpers/gui-helper";
 import {GlobalState} from "../../../services/global-state";
+import {markFigureAsSelected} from "../../../helpers/figure-helper";
 
 export function addControlEnableMultiselect(parentMenu: HTMLElement) {
     // Create Toggle
@@ -18,6 +19,12 @@ export function addControlEnableMultiselect(parentMenu: HTMLElement) {
         if (event instanceof CustomEvent) {
             const multiselectEnable = globalState.getMultiselectEnable();
             globalState.setMultiselectEnable(!multiselectEnable);
+            if (multiselectEnable) {
+                const selFigs = globalState.getSelectedFigures();
+                selFigs.forEach(fig => {
+                    markFigureAsSelected(fig.htmlRef);
+                });
+            }
         }
     }
 
