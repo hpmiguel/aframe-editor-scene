@@ -14,8 +14,9 @@ import { LightScene } from './components/light-scene/light-scene';
 import { FiguresPalette } from './components/figures-palette/figures-palette';
 import { GlobalMenu } from "./components/global-menu/global-menu";
 import { registerSelectableFigureScene } from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
-import { loadScript } from "./utils/script-loading";
+import { loadPhysicsLibs } from "./utils/script-loading";
 import { defineImportEvent } from "./utils/export-scene";
+import {InfoMenu} from "./components/info-menu/info-menu";
 
 // TODO import like modules, test compile ammo module to wasm
 // import * as Ammo from './vendor/ammo.wasm' // compiled online
@@ -30,10 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const physicsActive: boolean = true;
 
     // Asynchronous loading physics libs
-    if (physicsActive) {
-        loadScript('ammo.wasm');
-        loadScript('aframe-physics-system.min');
-    }
+    if (physicsActive) loadPhysicsLibs();
 
     defineImportEvent();
 
@@ -61,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             shape: 'box'
         }
     });
-    appendFigure(floor, '-0.8 0.01 1.8', scene);
+    appendFigure(floor, '0 0.01 1.5', scene);
     registerSelectableFigureScene();
 
     const initialFigures: Array<Figure> = [
@@ -99,6 +97,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Global Menu
     new GlobalMenu();
+
+    // Info Menu
+    new InfoMenu();
 
 });
 

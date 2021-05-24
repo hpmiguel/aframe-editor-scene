@@ -29,9 +29,9 @@ export class GlobalMenu {
     private createMenuContainer() {
         this.entityRef = createContainer({
             width: '1.3',
-            height: '1.5',
-            position: '-2.5 1 4.5',
-            rotation: '0 90 0'
+            height: '1.6',
+            position: '-3.6 1.5 1.5',
+            rotation: '0 20 0'
             // 'panel-color': '#93b2e8'
         });
 
