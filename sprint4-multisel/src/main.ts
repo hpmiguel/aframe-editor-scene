@@ -40,9 +40,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     new LightScene({
         type: 'directional',
         castShadow: true,
-        intensity: 0.98,
+        intensity: 0.9,
         shadowCameraVisible: false,
-        position: "1 2 1.8"
+        position: "0 3 4"
     });
 
     const floor = new Plane({
