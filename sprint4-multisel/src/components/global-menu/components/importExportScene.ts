@@ -34,7 +34,6 @@ function addImportButton(container: HTMLElement) {
     const customAction = 'import' + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
 
-
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
@@ -55,7 +54,6 @@ function addExportButton(container: HTMLElement) {
     // Interaction
     const customAction = 'export' + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
-
 
     window[customAction] = function (event) {
         event.stopPropagation();

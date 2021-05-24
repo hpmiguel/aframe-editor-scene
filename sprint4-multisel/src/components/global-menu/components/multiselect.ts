@@ -9,7 +9,7 @@ export function addControlEnableMultiselect(parentMenu: HTMLElement) {
     });
 
     // Interaction
-    const customAction = 'setWireframe' + new Date().getTime();
+    const customAction = 'setMultiSelect' + new Date().getTime();
     multiselectControl.setAttribute('onclick', customAction);
 
     const globalState = GlobalState.getInstance();

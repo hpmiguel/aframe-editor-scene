@@ -4,6 +4,7 @@ import {addControlEnableMultiselect} from "./components/multiselect";
 import {addControlEditSize} from "../edit-menu-figure/components/edit-size";
 import {addControlImportExport} from "./components/importExportScene";
 import {addControlLightIntensity} from "./components/lightIntensity";
+import {addControlLightTimelapseControl} from "./components/lightTimelapse";
 
 export class GlobalMenu {
 
@@ -18,6 +19,7 @@ export class GlobalMenu {
 
         // Controls
         addControlLightIntensity(this.entityRef);
+        addControlLightTimelapseControl(this.entityRef);
         addControlImportExport(this.entityRef);
         addControlEnableMultiselect(this.entityRef);
 
