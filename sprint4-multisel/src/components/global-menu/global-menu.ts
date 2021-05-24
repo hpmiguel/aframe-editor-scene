@@ -3,6 +3,7 @@ import {SceneRef} from "../../services/scene-ref";
 import {addControlEnableMultiselect} from "./components/multiselect";
 import {addControlEditSize} from "../edit-menu-figure/components/edit-size";
 import {addControlImportExport} from "./components/importExportScene";
+import {addControlLightIntensity} from "./components/lightIntensity";
 
 export class GlobalMenu {
 
@@ -16,20 +17,18 @@ export class GlobalMenu {
         this.entityRef.appendChild(title);
 
         // Controls
+        addControlLightIntensity(this.entityRef);
         addControlImportExport(this.entityRef);
         addControlEnableMultiselect(this.entityRef);
 
         // Multiselect Ops
-        const labelMulti = createLabel('Multi');
-        this.entityRef.appendChild(labelMulti);
-
         addControlEditSize(this.entityRef, null);
     }
 
     private createMenuContainer() {
         this.entityRef = createContainer({
-            width: '1.3',
-            height: '1.6',
+            width: '2.6',
+            height: '2.2',
             position: '-3.6 1.5 1.5',
             rotation: '0 20 0'
             // 'panel-color': '#93b2e8'

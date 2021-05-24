@@ -26,7 +26,8 @@ function addImportButton(container: HTMLElement) {
     // Create Button
     const buttonControl = createButton({
         value: 'Import',
-        width: '0.4'
+        width: '0.4',
+        margin: '0 0.05 0 0'
     });
 
     // Interaction

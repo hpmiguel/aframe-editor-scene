@@ -1,9 +1,13 @@
 // Singleton pattern
 
 import {Figure} from "../models/figure";
+import {LightScene} from "../components/light-scene/light-scene";
 
 export class GlobalState {
+
     private static instance: GlobalState;
+
+    private lightScene: LightScene;
 
     private sceneFigures: Array<Figure> = new Array<Figure>();
 
@@ -17,6 +21,15 @@ export class GlobalState {
             GlobalState.instance = new GlobalState();
         }
         return GlobalState.instance;
+    }
+
+    // lightScene
+    public getLightScene() {
+        return this.lightScene;
+    }
+
+    public setLightScene(lightScene: LightScene) {
+        this.lightScene = lightScene;
     }
 
     // sceneFigures

@@ -5,9 +5,9 @@ export class LightScene {
 
     primitive: string = 'a-entity'
     htmlRef: HTMLElement;
-    props: any;
+    props: LightProps;
 
-    constructor(props: any) {
+    constructor(props: LightProps) {
         this.props = props;
         this.createLightEntity();
     }
@@ -20,28 +20,24 @@ export class LightScene {
     }
 
     private setLightConfig() {
-        if (this.htmlRef && this.props && Object.keys(this.props)) {
-            const props = {...this.props};
-            const position = props.position;
-            delete props['position'];
-            const lightValue = propsInLine(props);
-            this.htmlRef.setAttribute('light', lightValue);
-            this.htmlRef.setAttribute('position', position);
-        }
+        const props = {...this.props};
+        const position = props.position;
+        delete props['position'];
+        const lightValue = propsInLine(props);
+        this.htmlRef.setAttribute('light', lightValue);
+        this.htmlRef.setAttribute('position', position);
     }
 
-    setProps(props: any) {
-        if(props && Object.keys(props)) {
-            this.props = props;
-            this.setLightConfig();
-        }
+    setIntensity(intensity: number) {
+        this.props.intensity = intensity;
+        this.setLightConfig();
     }
+}
 
-    setActive(active: boolean) {
-        if (active) {
-            this.setLightConfig();
-        } else {
-            this.htmlRef.setAttribute('light', '');
-        }
-    }
+type LightProps = {
+    type: string,
+    castShadow: boolean,
+    intensity: number,
+    shadowCameraVisible: boolean,
+    position: string
 }

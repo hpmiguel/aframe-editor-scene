@@ -16,7 +16,8 @@ import { GlobalMenu } from "./components/global-menu/global-menu";
 import { registerSelectableFigureScene } from "./components/behaviour-components/selectable-figure-scene/selectable-figure-scene";
 import { loadPhysicsLibs } from "./utils/script-loading";
 import { defineImportEvent } from "./utils/export-scene";
-import {InfoMenu} from "./components/info-menu/info-menu";
+import { InfoMenu } from "./components/info-menu/info-menu";
+import { GlobalState } from "./services/global-state";
 
 // TODO import like modules, test compile ammo module to wasm
 // import * as Ammo from './vendor/ammo.wasm' // compiled online
@@ -36,14 +37,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     defineImportEvent();
 
     const scene = SceneRef.getInstance().getSceneEl();
+    const globalState = GlobalState.getInstance();
 
-    new LightScene({
+    const lightScene = new LightScene({
         type: 'directional',
         castShadow: true,
         intensity: 0.9,
         shadowCameraVisible: false,
         position: "0 3 4"
     });
+    globalState.setLightScene(lightScene);
 
     const floor = new Plane({
         id: clonePodiumId,

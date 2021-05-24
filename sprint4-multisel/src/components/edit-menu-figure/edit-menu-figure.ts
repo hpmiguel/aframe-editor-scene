@@ -40,7 +40,7 @@ export class EditMenuFigure {
         this.entityRef = createContainer({
             width: '2.6',
             height: '4',
-            position: '0 2.3 0',
+            position: '0 2.5 0',
             'panel-color': '#93b2e8'
         });
         this.figure.htmlRef.appendChild(this.entityRef);
