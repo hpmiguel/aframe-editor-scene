@@ -6,6 +6,8 @@ export class InfoMenu {
 
     private entityRef: HTMLElement;
 
+    private props: any;
+
     private infoContent: Array<string> = [
         '1. Insert figure with double click',
         '2. Edit figure with double click',
@@ -15,7 +17,9 @@ export class InfoMenu {
         'Then you can resize group.'
     ];
 
-    constructor() {
+    constructor(props) {
+        this.props = props;
+
         this.createMenuContainer();
 
         // Title
@@ -27,13 +31,7 @@ export class InfoMenu {
     }
 
     private createMenuContainer() {
-        this.entityRef = createContainer({
-            width: '1.8',
-            height: '1.8',
-            position: '3 1.5 1.5',
-            rotation: '0 -20 0'
-            // 'panel-color': '#93b2e8'
-        });
+        this.entityRef = createContainer(this.props);
 
         const sceneEl = SceneRef.getInstance().getSceneEl();
         sceneEl.appendChild(this.entityRef);

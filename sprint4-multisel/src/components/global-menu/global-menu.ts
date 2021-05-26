@@ -10,12 +10,15 @@ import {addControlChangeScene} from "./components/change-scene";
 export class GlobalMenu {
 
     private entityRef: HTMLElement;
+    private props: any;
 
-    constructor() {
+    constructor(props) {
+        this.props = props;
+
         this.createMenuContainer();
 
         // Title
-        const title = createLabel('Scene', {margin: '0 0 0.1 0'});
+        const title = createLabel('Scene Menu', {margin: '0 0 0.1 0', width: '1.3'});
         this.entityRef.appendChild(title);
 
         // Controls
@@ -30,13 +33,7 @@ export class GlobalMenu {
     }
 
     private createMenuContainer() {
-        this.entityRef = createContainer({
-            width: '2.6',
-            height: '2.6',
-            position: '-3.6 1.5 1.5',
-            rotation: '0 20 0'
-            // 'panel-color': '#93b2e8'
-        });
+        this.entityRef = createContainer(this.props);
 
         const sceneEl = SceneRef.getInstance().getSceneEl();
         sceneEl.appendChild(this.entityRef);

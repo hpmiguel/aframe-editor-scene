@@ -92,17 +92,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Render figures palette
     new FiguresPalette(
         {
-            position: "0 2 0",
+            position: "0.2 2.3 0",
             rotation: "0 0 0"
         },
         initialFigures
     );
 
     // Global Menu
-    new GlobalMenu();
+    new GlobalMenu({
+        width: '2.6',
+        height: '2.6',
+        position: '-3.6 2 1.5',
+        rotation: '0 20 0'
+        // 'panel-color': '#93b2e8'
+    });
 
     // Info Menu
-    new InfoMenu();
+    new InfoMenu({
+        width: '1.8',
+        height: '1.8',
+        position: '3 1.8 1.5',
+        rotation: '0 -20 0'
+        // 'panel-color': '#93b2e8'
+    });
 
 });
 
