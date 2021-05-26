@@ -20,11 +20,11 @@ function addContainerButton() {
         height: '0.4'
     });
     addRemoveMaterialButton(containerButtons);
-    addChangeMateriaButton(containerButtons);
+    addChangeMaterialButton(containerButtons);
     _parentMenu.appendChild(containerButtons);
 }
 
-function addChangeMateriaButton(parent: HTMLElement) {
+function addChangeMaterialButton(parent: HTMLElement) {
     // Create Button
     const buttonControl = createButton({
         value: 'Change texture',

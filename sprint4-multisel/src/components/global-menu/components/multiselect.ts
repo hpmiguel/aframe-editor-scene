@@ -5,7 +5,8 @@ import {markFigureAsSelected} from "../../../helpers/figure-helper";
 export function addControlEnableMultiselect(parentMenu: HTMLElement) {
     // Create Toggle
     const multiselectControl = createToggle({
-        value: 'Multiselect'
+        value: 'Multiselect Mode',
+        width: '1'
     });
 
     // Interaction

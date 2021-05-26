@@ -13,7 +13,7 @@ export function addControlImportExport(parentMenu: HTMLElement) {
 function addContainerButton() {
     const containerButtons = createContainer({
         'flex-direction': 'row',
-        margin: '0 0 0.05 0',
+        margin: '0 0 0.1 0',
         width: '0.8',
         height: '0.2'
     });

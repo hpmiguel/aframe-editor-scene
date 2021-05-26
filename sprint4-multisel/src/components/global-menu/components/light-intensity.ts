@@ -1,5 +1,4 @@
 import {createLabel, createSlider} from "../../../helpers/gui-helper";
-import {Figure} from "../../../models/figure";
 import {GlobalState} from "../../../services/global-state";
 
 export function addControlLightIntensity(parentMenu: HTMLElement) {
