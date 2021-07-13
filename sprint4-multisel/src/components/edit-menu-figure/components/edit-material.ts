@@ -1,6 +1,7 @@
 import {Figure} from "../../../models/figure";
 import {createButton, createContainer} from "../../../helpers/gui-helper";
 import {textures} from '../../../utils/constants';
+import {cloneDeep} from "lodash";
 
 let _parentMenu: HTMLElement;
 let _figure: Figure;
@@ -38,6 +39,8 @@ function addChangeMaterialButton(parent: HTMLElement) {
     const texturesKeys = Object.keys(textures);
     let textureOffset = 0;
 
+    const figureAction = cloneDeep(_figure); // backup for triggered
+
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
@@ -47,7 +50,7 @@ function addChangeMaterialButton(parent: HTMLElement) {
                 src: textures[textureKey],
                 roughness: 1
             };
-            _figure.setMaterial(material);
+            figureAction.setMaterial(material);
         }
     }
 
@@ -65,11 +68,12 @@ function addRemoveMaterialButton(parent: HTMLElement) {
     const customAction = 'removeTexture' + new Date().getTime();
     buttonControl.setAttribute('onclick', customAction);
 
+    const figureAction = cloneDeep(_figure); // backup for triggered
 
     window[customAction] = function (event) {
         event.stopPropagation();
         if (event instanceof CustomEvent) {
-            _figure.setMaterial(null);
+            figureAction.setMaterial(null);
         }
     }
 
