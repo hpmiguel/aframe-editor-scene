@@ -15,22 +15,23 @@
       <!-- Camera. -->
       <a-entity id="rig" position="0 1.6 5.2">
         <!-- Mouse camera-->
-        <a-entity id="camera-mouse" camera look-controls wasd-controls
-                  cursor="rayOrigin: mouse"
-                  raycaster="object: .selectable-superhands [gui-interactable]"
+        <a-entity id="camera-mouse" camera look-controls></a-entity>
+
+        <!-- Oculus quest controls -->
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .selectable-superhands [gui-interactable]; far: 5"
                   super-hands="colliderEvent: raycaster-intersection;
                                   colliderEventProperty: els;
                                   colliderEndEvent: raycaster-intersection-cleared;
                                   colliderEndEventProperty: clearedEls;"
         ></a-entity>
-
-        <!-- Gazed Camera -->
-        <!--        <a-camera look-controls wasd-controls position="0 0 0">-->
-        <!--          <a-gui-cursor id="cursor"-->
-        <!--                        raycaster="objects: [gui-interactable]"-->
-        <!--                        fuse="false"-->
-        <!--          ></a-gui-cursor>-->
-        <!--        </a-camera>-->
+        <a-entity laser-controls="hand: right" raycaster="objects: .selectable-superhands [gui-interactable]; far: 5"
+                  super-hands="colliderEvent: raycaster-intersection;
+                                  colliderEventProperty: els;
+                                  colliderEndEvent: raycaster-intersection-cleared;
+                                  colliderEndEventProperty: clearedEls;"
+        ></a-entity>
 
       </a-entity>
 

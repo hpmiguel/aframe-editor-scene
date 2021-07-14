@@ -34,7 +34,8 @@ function getWebpackConfig(env) {
             overlay: {
                 warnings: false,
                 errors: true
-            }
+            },
+            https: true
         },
         module: {
             rules: [
